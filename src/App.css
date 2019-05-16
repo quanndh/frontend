@@ -1,25 +1,36 @@
 
-
-.layer{
-  position: relative;
-  height: 100vh;
-  width: 100%;
-  opacity: .6;
-  bottom: 100vh
+body, html {
+  padding: 0;
+  margin: 0;
 }
 
-.nav-text{
+.navbar{
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url("https://hdqwalls.com/download/smoking-beard-man-1920x1080.jpg");
+}
+
+.nav{
   color: white;
   font-weight: 300;
-  text-shadow: .8px 2px 2px black;
+  text-shadow: .8px 2px 2px black; 
 }
 
-.navbar a {
-  padding-right: 10px;
-}
 
-.material-icons{
+.navbar drawer{
   color: white;
-  position: fixed;
-  top :20px;
+}
+
+.nav .nav-text{
+  font-size: 16px;
+  text-decoration: none;
+  transition: 0.2s ease-in;
+}
+
+.nav .nav-brand{
+  font-size: 22px;
+  text-decoration: none;
+  transition: 0.2s ease-in;
+}
+
+.nav .nav-text:hover{
+  font-size: 22px; 
 }

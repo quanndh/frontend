@@ -17,23 +17,20 @@ class NavbarSmall extends Component {
         const {scrollY, searchText} = this.props;
         
         return (
-                <Header className="nav-text" transparent title="ShopCANA" style={{transition: ".22s ease-in", position: 'fixed', backgroundColor: scrollY >= 700 ? "black" : ""}}>
-                    <Navigation className="navbar">
-                        <Link   to="/imported" >Imported</Link>
-                        <Link   to="/" >Interior</Link>
-                        <Link   to="/">Handmade</Link>
+                <Header className="nav" transparent title="ShopCANA" style={{transition: ".22s ease-in",width: "100%", position: 'fixed', backgroundColor: scrollY >= 700 ? "black" : ""}}>
+                    <Navigation>
+                        <Link className="nav-text"  to="/imported" >Imported</Link>
+                        <Link className="nav-text"  to="/" >Interior</Link>
+                        <Link className="nav-text"  to="/">Handmade</Link>
                         <Textfield
                             value={searchText}
                             onChange={this.textChange}
                             label="Search"
                             expandable
                             expandableIcon="search"
-                            style={{outline: ""}}
                         />
                     </Navigation>
                 </Header>
-                
-
         );
     }
 }
