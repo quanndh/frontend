@@ -1,32 +1,39 @@
 import React, { Component } from 'react';
-import { Card, CardTitle, CardActions, CardText, Button, Cell } from 'react-mdl';
-
+import {Grid, CardActionArea, CardActions, Button, CardContent, Card, CardMedia, Typography} from "@material-ui/core";
+import {Link} from "react-router-dom";
 class Product extends Component {
     render() {
-        return (
-            <Cell col={3}>
-                <Card shadow={0} style={{width: '320px', height: '320px'}}>
-                    <CardTitle expand style={{color: '#fff', background: 'url(http://www.getmdl.io/assets/demos/dog.png) bottom right 15% no-repeat #46B6AC'}}>Update</CardTitle>
-                    <CardText>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Aenan convallis.
-                    </CardText>
-                    <CardActions border>
-                        <Button colored>View Updates</Button>
-                    </CardActions>
-                </Card>
-                <Card shadow={0} style={{width: '320px', height: '320px'}}>
-                    <CardTitle expand style={{color: '#fff', background: 'url(http://www.getmdl.io/assets/demos/dog.png) bottom right 15% no-repeat #46B6AC'}}>Update</CardTitle>
-                    <CardText>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Aenan convallis.
-                    </CardText>
-                    <CardActions border>
-                        <Button colored>View Updates</Button>
-                    </CardActions>
-                </Card>
-            </Cell>
+        const { product } = this.props;
             
+        
+        return (
+            <Grid item xs={12} md={6} lg={3}>
+            <Link to={`/products/${product._id}`} style={{textDecoration: "none"}}>
+                <Card>
+                    <CardActionArea>
+                        <CardMedia
+                        style={{height: "400px"}}
+                        image={product.imageUrl}
+                        title={product.title}
+                        />
+                        <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            {product.title}
+                        </Typography>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            {product.price}
+                        </Typography>
+                        </CardContent>
+                    </CardActionArea>
+                    <CardActions>
+                        <Button size="large" color="primary">
+                            Add to cart
+                        </Button>
+                    </CardActions>
+                </Card>
+            </Link>
+                
+            </Grid>
         );
     }
 }

@@ -13,15 +13,20 @@ class NavbarSmall extends Component {
     textChange(e){
         this.props.onChange(e.target.value)
     }
+
+    onClick = e => {
+        console.log(e.value);
+    }
+
     render() {
         const {scrollY, searchText} = this.props;
         
         return (
-                <Header className="nav" transparent title="ShopCANA" style={{transition: ".22s ease-in",width: "100%", position: 'fixed', backgroundColor: scrollY >= 700 ? "black" : ""}}>
+                <Header className="nav" transparent title="ShopCANA" style={{transition: ".22s ease-in",width: "100%",right: "3.5px", position: 'fixed', backgroundColor: scrollY >= 700 ? "black" : ""}}>
                     <Navigation>
-                        <Link className="nav-text"  to="/imported" >Imported</Link>
-                        <Link className="nav-text"  to="/" >Interior</Link>
-                        <Link className="nav-text"  to="/">Handmade</Link>
+                        <Link className="nav-text"  to="/" onClick={this.onClick}>Imported</Link>
+                        <Link className="nav-text"  to="/" onClick={this.onClick}>Interior</Link>
+                        <Link className="nav-text"  to="/" onClick={this.onClick}>Handmade</Link>
                         <Textfield
                             value={searchText}
                             onChange={this.textChange}
