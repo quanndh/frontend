@@ -24,9 +24,9 @@ class NavbarSmall extends Component {
         return (
                 <Header className="nav" transparent title="ShopCANA" style={{transition: ".22s ease-in",width: "100%",right: "3.5px", position: 'fixed', backgroundColor: scrollY >= 700 ? "black" : ""}}>
                     <Navigation>
-                        <Link className="nav-text"  to="/" onClick={this.onClick}>Imported</Link>
-                        <Link className="nav-text"  to="/" onClick={this.onClick}>Interior</Link>
-                        <Link className="nav-text"  to="/" onClick={this.onClick}>Handmade</Link>
+                        <Link className="nav-text"  to="/" >Imported</Link>
+                        <Link className="nav-text"  to="/">Interior</Link>
+                        <Link className="nav-text"  to="/" >Handmade</Link>
                         <Textfield
                             value={searchText}
                             onChange={this.textChange}

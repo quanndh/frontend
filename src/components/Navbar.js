@@ -31,7 +31,7 @@ class Navbar extends Component {
         return (
                 <div className="navbar" style={{height: '100vh'}}>
                     <Layout  style={{}}>
-                        <NavbarSmall scrollY={scrollY} onChange={this.onChange} onClick={this.onClick}/>
+                        <NavbarSmall scrollY={scrollY} onChange={this.onChange} />
                         <Drawer style={{position: "fixed"}} className="drawer">
                             <Navigation>
                                 <Link to="/" >Imported</Link>
