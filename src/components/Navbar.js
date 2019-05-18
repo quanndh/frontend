@@ -35,9 +35,9 @@ class Navbar extends Component {
                         <NavbarSmall  onChange={this.onChange} />
                         <Drawer style={{position: "fixed"}} className="drawer">
                             <Navigation>
-                                <Link to="/" >Imported</Link>
-                                <Link to="/" >Interior</Link>
-                                <Link to="/" >Handmade</Link>
+                                <Link to="/" >Home</Link>
+                                <Link to="/cart" >Cart</Link>
+                                <Link to="/login" >Login</Link>
                             </Navigation>
                         </Drawer>
                         <Content style={{display: "flex", justifyContent: "center", alignItems: "center", color: "white"}}>

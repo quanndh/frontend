@@ -40,3 +40,14 @@ body, html {
 .nav .nav-text:hover{
   font-size: 22px; 
 }
+
+input.error {
+  border-color: red;
+}
+
+.input-feedback {
+  color: red;
+  margin-top: .25rem;
+  text-align: right
+}
+

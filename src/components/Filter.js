@@ -44,7 +44,7 @@ class Filter extends Component {
         return (
             <Paper style={{height: "500px", width: "90%", marginLeft: "14px"}}>
                 <FormControl component="fieldset" style={{marginBottom: "50px"}}>
-                    <FormLabel component="legend" style={{fontSize: "28px" ,marginTop:"10xp"}}>Category</FormLabel>
+                    <FormLabel component="legend" style={{fontSize: "28px" ,marginTop:"10"}}>Category</FormLabel>
                     <RadioGroup
                         aria-label="category"
                         name="category"

@@ -30,6 +30,13 @@ class NavbarSmall extends Component {
                     
                     <Navigation>
                         <Link className="nav-text"  to="/" >Home</Link>
+                        <Textfield
+                            value={searchText}
+                            onChange={this.textChange}
+                            label="Search"
+                            expandable
+                            expandableIcon="search"
+                        />
                         <Link className="nav-text"  to="/cart">
                             <IconButton aria-label="Cart">
                             <CartContext.Consumer>
@@ -45,13 +52,6 @@ class NavbarSmall extends Component {
                         </Link>
                         <Link className="nav-text"  to="/login" >Login</Link>
                         
-                        <Textfield
-                            value={searchText}
-                            onChange={this.textChange}
-                            label="Search"
-                            expandable
-                            expandableIcon="search"
-                        />
                     </Navigation>
                 </Header>
         );

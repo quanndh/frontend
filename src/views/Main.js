@@ -32,7 +32,6 @@ class Main extends Component {
     }
 
     componentDidUpdate(prevProps, prevState){  
-        console.log(this.state.category, this.state.price.value)
         if(this.state.category === prevState.category && this.state.price.value !== prevState.price.value) {
             axios.get("http://localhost:6969/api/products/filter?price=" + this.state.price.value + "&category=" + this.state.category)
             .then(data => {
