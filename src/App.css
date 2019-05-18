@@ -8,10 +8,14 @@ body, html {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url("https://hdqwalls.com/download/smoking-beard-man-1920x1080.jpg");
 }
 
-.nav{
+.navbar .nav{
   color: white;
   font-weight: 300;
   text-shadow: .8px 2px 2px black; 
+}
+
+.nav{
+  background-color: black;
 }
 
 

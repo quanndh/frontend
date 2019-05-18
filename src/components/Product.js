@@ -3,7 +3,7 @@ import {Grid, CardActionArea, CardActions, Button, CardContent, Card, CardMedia,
 import {Link} from "react-router-dom";
 class Product extends Component {
     render() {
-        const { product } = this.props;
+        const { product, width } = this.props;
             
         
         return (
@@ -12,15 +12,15 @@ class Product extends Component {
                 <Card>
                     <CardActionArea>
                         <CardMedia
-                        style={{height: "400px"}}
+                        style={{height: "400px", width: {width}}}
                         image={product.imageUrl}
                         title={product.title}
                         />
                         <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
+                        <Typography gutterBottom variant="h3" component="h2">
                             {product.title}
                         </Typography>
-                        <Typography gutterBottom variant="h5" component="h2">
+                        <Typography gutterBottom variant="h3" component="h2">
                             {product.price}
                         </Typography>
                         </CardContent>

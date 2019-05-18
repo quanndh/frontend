@@ -19,10 +19,10 @@ class NavbarSmall extends Component {
     }
 
     render() {
-        const {scrollY, searchText} = this.props;
+        const { searchText} = this.props;
         
         return (
-                <Header className="nav" transparent title="ShopCANA" style={{transition: ".22s ease-in",width: "100%",right: "3.5px", position: 'fixed', backgroundColor: scrollY >= 700 ? "black" : ""}}>
+                <Header className="nav" transparent title="ShopCANA" style={{transition: ".22s ease-in",width: "100%",right: "3.5px", position: 'fixed', backgroundColor: "black",  background: "linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.7))"}}>
                     <Navigation>
                         <Link className="nav-text"  to="/" >Imported</Link>
                         <Link className="nav-text"  to="/">Interior</Link>

@@ -8,18 +8,18 @@ class Navbar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            scrollY: 0,
+            // scrollY: 0,
         }
         this.onChange = this.onChange.bind(this);
 
     }
-    componentDidMount() {
-        window.addEventListener("scroll", () => {
-            this.setState({
-                scrollY: window.scrollY,
-            })        
-        })
-    }   
+    // componentDidMount() {
+    //     window.addEventListener("scroll", () => {
+    //         this.setState({
+    //             scrollY: window.scrollY,
+    //         })        
+    //     })
+    // }   
 
     onChange(text){
         this.props.onChange(text);
@@ -27,11 +27,12 @@ class Navbar extends Component {
 
     onClick = text => this.props.onClick(text);
     render() {
-        const { scrollY } = this.state;
+        // const { scrollY } = this.state;
+        // let backgroundColor = scrollY >= 700 ? "black" : ""
         return (
                 <div className="navbar" style={{height: '100vh'}}>
                     <Layout  style={{}}>
-                        <NavbarSmall scrollY={scrollY} onChange={this.onChange} />
+                        <NavbarSmall  onChange={this.onChange} />
                         <Drawer style={{position: "fixed"}} className="drawer">
                             <Navigation>
                                 <Link to="/" >Imported</Link>
