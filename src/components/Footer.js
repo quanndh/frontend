@@ -6,7 +6,7 @@ class Footers extends Component {
             <Footer size="mega">
                 <FooterSection type="middle">
                     <FooterDropDownSection title="Features">
-                        <FooterLinkList>
+                        <FooterLinkList >
                             <a href="/">About</a>
                             <a href="/">Terms</a>
                             <a href="/">Partners</a>

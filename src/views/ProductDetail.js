@@ -3,7 +3,7 @@ import NavbarSmall from "../components/NavbarSmall";
 import Footers from "../components/Footer"
 import { Grid, Paper, Typography } from "@material-ui/core";
 import axios from "axios";
-import Product from '../components/Product';
+
 class ProductDetail extends Component {
     constructor(props){
         super(props);
@@ -29,13 +29,13 @@ class ProductDetail extends Component {
                     <NavbarSmall />
                 </Grid>
                 <Grid item xs={12} style={{marginTop: "80px" ,display: "flex"}}>
-                    <Grid item xs={12} md={6} style={{ justifyContent:"center", display:"flex"}}>
+                    <Grid item md={12} lg={6} style={{ justifyContent:"center", display:"flex"}}>
                         <Paper>
                             <img alt="" src={product.imageUrl} style={{width: "400px", height: "600px"}}/>
                         </Paper>
                         
                     </Grid>
-                    <Grid item xs={12} md={6} >
+                    <Grid item  md={12} lg={6}>
                         <Paper elevation={1}  style={{ height: "600px", width: "800px"}}>
                             <Typography variant="h1" component="h1" style={{marginBottom: "80px"}}>
                                 {product.title}

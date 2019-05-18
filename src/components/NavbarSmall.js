@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Header, Navigation, Textfield} from 'react-mdl';
 import { Link } from "react-router-dom";
+import IconButton from '@material-ui/core/IconButton';
+import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCart';
+import Badge from '@material-ui/core/Badge';
+
 class NavbarSmall extends Component {
     constructor(props){
         super(props);
@@ -23,10 +27,18 @@ class NavbarSmall extends Component {
         
         return (
                 <Header className="nav" transparent title="ShopCANA" style={{transition: ".22s ease-in",width: "100%",right: "3.5px", position: 'fixed', backgroundColor: "black",  background: "linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.7))"}}>
+                    
                     <Navigation>
-                        <Link className="nav-text"  to="/" >Imported</Link>
-                        <Link className="nav-text"  to="/">Interior</Link>
-                        <Link className="nav-text"  to="/" >Handmade</Link>
+                        <Link className="nav-text"  to="/" >Home</Link>
+                        <Link className="nav-text"  to="/cart">
+                            <IconButton aria-label="Cart">
+                                <Badge badgeContent={4} color="primary">
+                                    <ShoppingCartOutlinedIcon style={{color: "white"}}/>
+                                </Badge>
+                            </IconButton>
+                        </Link>
+                        <Link className="nav-text"  to="/login" >Login</Link>
+                        
                         <Textfield
                             value={searchText}
                             onChange={this.textChange}

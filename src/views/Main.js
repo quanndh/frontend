@@ -11,7 +11,8 @@ class Main extends Component {
         this.state = {
             products: [],
             search: "",
-            category: "",
+            category: "all",
+            price: {value: 200}
         }
     }
     searchChange = text => {
@@ -20,6 +21,10 @@ class Main extends Component {
     changeCategory = text => {
         this.setState({category: text})
     }
+
+    changePrice = text => {
+        this.setState({price: text})
+    }
     componentWillMount(){
         axios.get("http://localhost:6969/api/products/")
         .then(data => this.setState({products: data.data.data}))
@@ -27,19 +32,28 @@ class Main extends Component {
     }
 
     componentDidUpdate(prevProps, prevState){  
-        if(this.state.category !== prevState.category){
-            axios.get("http://localhost:6969/api/products/category/" + this.state.category)
+        console.log(this.state.category, this.state.price.value)
+        if(this.state.category !== prevState.category && this.state.price.value !== prevState.price.value){ 
+            axios.get("http://localhost:6969/api/products/filter?&price=" + this.state.price.value + "&category=" + this.state.category)
             .then(data => {
                 this.setState({products: data.data.data});
             })
             .catch(err => console.log(err))
-        }
+        } else if(this.state.category === prevState.category && this.state.price.value !== prevState.price.value) {
+
+        }  
+                axios.get("http://localhost:6969/api/products/filter?price=" + this.state.price.value)
+                .then(data => {
+                    this.setState({products: data.data.data});
+                })
+                .catch(err => console.log(err))
+
+         
     }
 
     render() {
-        const { products, search, category } = this.state;
-        console.log(search, category);
-        console.log(products);
+
+        const { products, search, category, price } = this.state;
         const displayProducts =  products ? products.filter(product => product.title.toLowerCase().includes(search)).map(product => 
                 <Product product={product} key={product._id}/>
         ) : "Loading..." ;
@@ -49,9 +63,9 @@ class Main extends Component {
                     <Navbar onChange={this.searchChange} />
                 </Grid>
                 <Grid item xs={12} md={3}>
-                    <Filter onChange={this.changeCategory} value={category}/>
+                    <Filter onChange={this.changeCategory} category={category} price={price.value} changePrice={this.changePrice}/>
                 </Grid>
-                <Grid item xs={12} md={9} style={{marginBottom: "40px"}}>
+                <Grid item xs={12} md={9} style={{marginBottom: "40px", width:"99%"}}>
                     <Grid container spacing={32}>
                         {displayProducts}
                     </Grid>

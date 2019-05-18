@@ -21,7 +21,7 @@ class Product extends Component {
                             {product.title}
                         </Typography>
                         <Typography gutterBottom variant="h3" component="h2">
-                            {product.price}
+                            ${product.price}
                         </Typography>
                         </CardContent>
                     </CardActionArea>
