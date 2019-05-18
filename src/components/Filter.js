@@ -72,7 +72,7 @@ class Filter extends Component {
                     </RadioGroup>
                 </FormControl>
 
-                <FormLabel component="legend" style={{fontSize: "28px", marginBottom: "10px"}}>Price: {price*1}</FormLabel>
+                <FormLabel component="legend" style={{fontSize: "28px", marginBottom: "10px"}}>Price: {price*1} (Highest 1000)</FormLabel>
                 <Slider
                 value={price*1}
                 valueReducer={valueReducer}

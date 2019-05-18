@@ -3,10 +3,12 @@ import './App.css';
 import {BrowserRouter as Router, Route } from "react-router-dom";
 import Main from "./views/Main"
 import ProductDetail from "./views/ProductDetail";
+import {CartProvider} from "./contexts/Cart"
 
 function App() {
   return (
-    <Router>
+    <CartProvider>
+      <Router>
         <div className="App">
           <Route path="/" exact render={props => {
             return <Main {...props}/>
@@ -16,7 +18,9 @@ function App() {
             return <ProductDetail {...props}/>
           }}></Route>
         </div>
-    </Router> 
+      </Router> 
+    </CartProvider>
+    
   );
 }
 
