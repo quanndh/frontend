@@ -15,11 +15,9 @@ class CartProvider extends Component{
 
     changeValueQty(valueAsNumber, idProduct) {
         let item = this.state.cartItems;
-        console.log(idProduct);
         for(let i = 0; i < item.length; i++){
             if(item[i]._id === idProduct){
                 item[i].qty = valueAsNumber;
-                console.log(item[i].qty)
             }
         }
         this.setState({

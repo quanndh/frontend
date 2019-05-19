@@ -5,13 +5,38 @@ import { CartContext } from "../contexts/Cart";
 import CartItems from '../components/CartItems';
 import {Grid} from "@material-ui/core";
 import PaypalExpressBtn from 'react-paypal-express-checkout';
+import axios from 'axios';
 
 class CartDetail extends Component {
+    constructor(){
+        super();
+        this.state = {
+            items: []
+        }
+        
+    }
+    componentDidMount(){
+        this.setState({
+            items: this.context.cartItems
+        })
+    }
     render() {
         const onSuccess = (payment) => {
-        
-            		console.log("The payment was succeeded!", payment);
-            	
+            let items = this.state.items;
+            let orderedItems = items.map(item => {
+                return {title: item.title, qty: item.qty}
+            });
+            
+            console.log(orderedItems, payment);
+            axios.post("http://localhost:6969/api/order", {
+                buyerEmail: payment.email,
+                orderedItems: items,
+                address: payment.adress
+            }, {
+                withCredentials: true
+            })
+            .then(() => window.location.href = "http://localhost:3000/")
+            .catch(err => console.error(err))
         }
  
         const onCancel = (data) => {
@@ -65,4 +90,5 @@ class CartDetail extends Component {
     }
 }
 
+CartDetail.contextType = CartContext;
 export default CartDetail;
