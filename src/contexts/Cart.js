@@ -10,6 +10,7 @@ class CartProvider extends Component{
         }
         this.addToCart = this.addToCart.bind(this);
         this.changeValueQty = this.changeValueQty.bind(this);
+        this.totalPrice = this.totalPrice.bind(this);
     }
 
     changeValueQty(valueAsNumber, idProduct) {
@@ -24,6 +25,14 @@ class CartProvider extends Component{
         this.setState({
             cartItems: item,
         })
+    }
+
+    totalPrice(){
+        let total = this.state.cartItems.reduce((a,b) => {
+            return a + b.qty * b.price;
+        },
+        0)
+        return total;
     }
 
     addToCart(product) {
@@ -50,6 +59,7 @@ class CartProvider extends Component{
                     cartItems: this.state.cartItems,
                     addToCart: this.addToCart,
                     changeValueQty: this.changeValueQty,
+                    totalPrice: this.totalPrice
                 }}
             >
                 {this.props.children}

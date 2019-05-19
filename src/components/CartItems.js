@@ -16,14 +16,10 @@ class CartItems extends Component {
 
         const { items } = this.props;
         const uniqItems = _.uniq(items);
-        let totalPrice = uniqItems.reduce((a,b) => {
-            return a + b.qty * b.price;
-        },
-        0)
        
         return (
-            <Paper style={{minHeight: "500px"}}>
-                <Table>
+            <Paper>
+                <Table style={{minHeight: "300px"}}>
                     <TableHead>
                         <TableRow>
                             <TableCell style={{fontSize: "24px"}}>Product</TableCell>
@@ -55,7 +51,17 @@ class CartItems extends Component {
                 </Table>
                 <Paper style={{marginTop: "20px", width:"100%", display: "flex", justifyContent:"flex-end"}}>
                     <div style={{display: "flex", justifyContent:"flex-end", padding: "16px"}}>
-                         <Typography style={{fontSize: "24px"}}>Total price: {totalPrice}</Typography>
+                        
+                             
+                        <CartContext.Consumer>
+                        {
+                            ({totalPrice}) => (
+                                <Typography style={{fontSize: "24px"}}>Total price: {totalPrice()}  </Typography>
+                            )
+                        }
+                        </CartContext.Consumer>
+                
+                      
                     </div>
                    
                 </Paper>

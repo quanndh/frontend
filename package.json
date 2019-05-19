@@ -13,6 +13,7 @@
     "react-dom": "^16.8.6",
     "react-mdl": "^1.11.0",
     "react-numeric-input": "^2.2.3",
+    "react-paypal-express-checkout": "^1.0.5",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1",
     "yup": "^0.27.0"
