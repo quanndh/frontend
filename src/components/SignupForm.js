@@ -3,16 +3,20 @@ import {Input, Button} from "@material-ui/core";
 import {Link} from "react-router-dom";
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import axios from "axios";
 
 class SignupForm extends Component {
     render() {
         return (
             <Formik
                 onSubmit={(values, { setSubmitting }) => {
-                    setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
-                    }, 500);
+                    axios.post("http://localhost:6969/api/users/", {
+                        email: values.email,
+                        password: values.password,
+                        username: values.username
+                    })
+                    .then(() => window.location.href = "http://localhost:3000/login")
+                    .catch(err => console.error(err))
                 }}
                 validationSchema={Yup.object().shape({
                     email: Yup.string()

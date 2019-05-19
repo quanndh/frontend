@@ -48,7 +48,9 @@ class CartItems extends Component {
                             <TableCell align="right" style={{fontSize: "22px"}}>{item.price}</TableCell>
                             <TableCell align="right" style={{fontSize: "22px"}}>{item.price * item.qty}</TableCell>
                         </TableRow>
-                    )) : "No product yet!"}
+                    )) : <TableRow>
+                            <TableCell style={{fontSize: "24px"}} colSpan={4}>No product yet</TableCell>
+                        </TableRow>}
                     </TableBody>
                 </Table>
                 <Paper style={{marginTop: "20px", width:"100%", display: "flex", justifyContent:"flex-end"}}>
