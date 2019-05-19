@@ -5,6 +5,10 @@ import IconButton from '@material-ui/core/IconButton';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCart';
 import Badge from '@material-ui/core/Badge';
 import {CartContext} from "../contexts/Cart";
+import {UserContext} from "../contexts/User";
+import { Typography } from '@material-ui/core';
+import _ from "lodash";
+import Axios from 'axios';
 
 class NavbarSmall extends Component {
     constructor(props){
@@ -13,6 +17,7 @@ class NavbarSmall extends Component {
 
         }
         this.textChange = this.textChange.bind(this);
+        this.logOut = this.logOut.bind(this);
     }
 
     textChange(e){
@@ -21,6 +26,15 @@ class NavbarSmall extends Component {
 
     onClick = e => {
         console.log(e.value);
+    }
+
+    logOut(){
+        Axios.delete("http://localhost:6969/api/login/",{
+            withCredentials: true
+        })
+        .then(() => window.location.href = "/")
+        .catch(err => console.log(err))
+        
     }
 
     render() {
@@ -50,7 +64,18 @@ class NavbarSmall extends Component {
                             </CartContext.Consumer>
                             </IconButton>
                         </Link>
-                        <Link className="nav-text"  to="/login" >Login</Link>
+                        <UserContext.Consumer>
+                            {
+                                ({user}) => {
+                                    if(!_.isEmpty(user) ){   
+                                            return <Typography className="nav-text">{user.username} <Link className="nav-text"  to="/" onClick={this.logOut}>Log out</Link> </Typography> 
+                                    } else {
+                                        return <Link className="nav-text"  to="/login" >Log in</Link>
+                                    }  
+                                } 
+                            }
+                        </UserContext.Consumer>
+                        
                         
                     </Navigation>
                 </Header>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Paper, Table, TableHead, TableRow, TableBody, TableCell, Typography} from "@material-ui/core";
 import NumericInput from 'react-numeric-input';
-import lodash from "lodash";
+import _ from "lodash";
 import { CartContext } from '../contexts/Cart';
 
 class CartItems extends Component {
@@ -15,7 +15,7 @@ class CartItems extends Component {
     render() {
 
         const { items } = this.props;
-        const uniqItems = lodash.uniq(items);
+        const uniqItems = _.uniq(items);
         let totalPrice = uniqItems.reduce((a,b) => {
             return a + b.qty * b.price;
         },
@@ -33,7 +33,7 @@ class CartItems extends Component {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                    {uniqItems.length === 0 ? uniqItems.map(item => (
+                    {uniqItems.length !== 0 ? uniqItems.map(item => (
                         <TableRow key={item._id}>
                             <TableCell component="th" scope="row"  style={{fontSize: "22px"}}>
                                 {item.title}

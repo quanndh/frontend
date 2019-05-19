@@ -21,14 +21,12 @@ class CartProvider extends Component{
                 console.log(item[i].qty)
             }
         }
-        console.log(item);
         this.setState({
             cartItems: item,
         })
     }
 
     addToCart(product) {
-        console.log(product);
         let same = false;
        
         for(let i = 0; i < this.state.cartItems.length; i++){

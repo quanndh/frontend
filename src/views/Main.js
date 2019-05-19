@@ -44,17 +44,10 @@ class Main extends Component {
                 this.setState({products: data.data.data});
             })
             .catch(err => console.log(err))
-        }
-            
-        
-
-       
-
-         
+        }     
     }
 
     render() {
-
         const { products, search, category, price } = this.state;
         const displayProducts =  products ? products.filter(product => product.title.toLowerCase().includes(search)).map(product => 
                 <Product product={product} key={product._id}/>
@@ -62,7 +55,7 @@ class Main extends Component {
         return (
             <Grid container>
                 <Grid item xs={12} style={{marginBottom: "40px"}}>
-                    <Navbar onChange={this.searchChange} />
+                    <Navbar  onChange={this.searchChange} />
                 </Grid>
                 <Grid item xs={12} md={3}>
                     <Filter onChange={this.changeCategory} category={category} price={price.value} changePrice={this.changePrice}/>
