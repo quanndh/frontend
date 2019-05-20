@@ -29,7 +29,7 @@ class NavbarSmall extends Component {
     }
 
     logOut(){
-        Axios.delete("http://localhost:6969/api/login/",{
+        Axios.delete("https://xcommerce-server.herokuapp.com/api/login/",{
             withCredentials: true
         })
         .then(() => window.location.href = "/")

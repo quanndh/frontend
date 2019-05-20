@@ -12,7 +12,7 @@ class ProductDetail extends Component {
         }
     }
     componentDidMount() {
-        axios.get( `http://localhost:6969/api/products/${this.props.match.params.productid}`)
+        axios.get( `https://xcommerce-server.herokuapp.com/api/products/${this.props.match.params.productid}`)
             .then(data => {
                 this.setState({
                     product: data.data.data

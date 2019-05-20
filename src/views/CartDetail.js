@@ -28,14 +28,14 @@ class CartDetail extends Component {
             });
             
             console.log(orderedItems, payment);
-            axios.post("http://localhost:6969/api/order", {
+            axios.post("https://xcommerce-server.herokuapp.com/api/order", {
                 buyerEmail: payment.email,
                 orderedItems: items,
                 address: payment.adress
             }, {
                 withCredentials: true
             })
-            .then(() => window.location.href = "http://localhost:3000/")
+            .then(() => window.location.href = "https://xcommerce-client.herokuapp.com/")
             .catch(err => console.error(err))
         }
  

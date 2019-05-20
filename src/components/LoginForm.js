@@ -11,13 +11,13 @@ class LoginForm extends Component {
         return (
             <Formik
                 onSubmit={(values, { setSubmitting }) => {
-                    axios.post("http://localhost:6969/api/login/", {
+                    axios.post("https://xcommerce-server.herokuapp.com/api/login/", {
                         email: values.email,
                         password: values.password
                     }, {
                         withCredentials: true
                     })
-                    .then(() => window.location.href = "http://localhost:3000/")
+                    .then(() => window.location.href = "https://xcommerce-client.herokuapp.com")
                     .catch(err => console.error(err))
                 }}
                 validationSchema={Yup.object().shape({

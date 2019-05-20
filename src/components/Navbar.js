@@ -13,13 +13,7 @@ class Navbar extends Component {
         this.onChange = this.onChange.bind(this);
 
     }
-    // componentDidMount() {
-    //     window.addEventListener("scroll", () => {
-    //         this.setState({
-    //             scrollY: window.scrollY,
-    //         })        
-    //     })
-    // }   
+    
 
     onChange(text){
         this.props.onChange(text);
@@ -27,8 +21,7 @@ class Navbar extends Component {
 
     onClick = text => this.props.onClick(text);
     render() {
-        // const { scrollY } = this.state;
-        // let backgroundColor = scrollY >= 700 ? "black" : ""
+      
         return (
                 <div className="navbar" style={{height: '100vh'}}>
                     <Layout  style={{}}>

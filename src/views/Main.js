@@ -26,20 +26,20 @@ class Main extends Component {
         this.setState({price: text})
     }
     componentWillMount(){
-        axios.get("http://localhost:6969/api/products/")
+        axios.get("https://xcommerce-server.herokuapp.com/api/products/")
         .then(data => this.setState({products: data.data.data}))
         .catch(err => console.log(err))
     }
 
     componentDidUpdate(prevProps, prevState){  
         if(this.state.category === prevState.category && this.state.price.value !== prevState.price.value) {
-            axios.get("http://localhost:6969/api/products/filter?price=" + this.state.price.value + "&category=" + this.state.category)
+            axios.get("https://xcommerce-server.herokuapp.com/api/products/filter?price=" + this.state.price.value + "&category=" + this.state.category)
             .then(data => {
                 this.setState({products: data.data.data});
             })
             .catch(err => console.log(err))
         } else if(this.state.category !== prevState.category && this.state.price.value === prevState.price.value) {
-            axios.get("http://localhost:6969/api/products/filter?price=" + this.state.price.value + "&category=" + this.state.category)
+            axios.get("https://xcommerce-server.herokuapp.com/api/products/filter?price=" + this.state.price.value + "&category=" + this.state.category)
             .then(data => {
                 this.setState({products: data.data.data});
             })
