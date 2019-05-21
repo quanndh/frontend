@@ -6,16 +6,27 @@ import * as Yup from 'yup';
 import axios from "axios";
 
 class SignupForm extends Component {
+    constructor(){
+        super();
+        this.state = {
+            message: ""
+        }
+    }
     render() {
         return (
             <Formik
                 onSubmit={(values, { setSubmitting }) => {
-                    axios.post("https://xcommerce-server.herokuapp.com/api/users/", {
+                    axios.post("http://localhost:6969/api/users"||"https://xcommerce-server.herokuapp.com/api/users/", {
                         email: values.email,
                         password: values.password,
                         username: values.username
                     })
-                    .then(() => window.location.href = "https://xcommerce-client.herokuapp.com/login")
+                    .then((res) => {
+                        if(res.data.message){
+                             this.setState({message: res.data.message});
+                        } else  window.location.href = "http://localhost:3000/login"||"https://xcommerce-client.herokuapp.com/login"
+                        
+                    })
                     .catch(err => console.error(err))
                 }}
                 validationSchema={Yup.object().shape({
@@ -59,6 +70,9 @@ class SignupForm extends Component {
                                     />
                                     {errors.email && touched.email && (
                                         <div className="input-feedback">{errors.email}</div>
+                                    )}
+                                    {this.state.message && (
+                                        <div className="input-feedback">{this.state.message}</div>
                                     )}
 
                                     <Input

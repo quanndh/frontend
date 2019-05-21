@@ -6,19 +6,29 @@ import * as Yup from 'yup';
 import axios from 'axios';
 
 class LoginForm extends Component {
-
+    constructor(){
+        super();
+        this.state = {
+            message: ""
+        }
+    }
     render() {
         return (
             <Formik
                 onSubmit={(values, { setSubmitting }) => {
-                    axios.post("https://xcommerce-server.herokuapp.com/api/login/", {
+                    axios.post( "http://localhost:6969/api/login"||"https://xcommerce-server.herokuapp.com/api/login/", {
                         email: values.email,
                         password: values.password
                     }, {
                         withCredentials: true
                     })
-                    .then(() => window.location.href = "https://xcommerce-client.herokuapp.com")
-                    .catch(err => console.error(err))
+                    .then((res) => {
+                            window.location.href = "http://localhost:3000/"||"https://xcommerce-client.herokuapp.com"
+                        
+                    })
+                    .catch(() => this.setState({
+                        message: "Wrong email or password"
+                    }))
                 }}
                 validationSchema={Yup.object().shape({
                     email: Yup.string()
@@ -77,6 +87,9 @@ class LoginForm extends Component {
                                     />
                                     {errors.password && touched.password && (
                                         <div className="input-feedback">{errors.password}</div>
+                                    )}
+                                     {this.state.message && (
+                                        <div className="input-feedback">{this.state.message}</div>
                                     )}
                                     
                                     <h4>If you don't have an account yet, <Link to="/signup" style={{textDecoration: "none"}}>Sign Up</Link></h4>

@@ -14,7 +14,7 @@ class UserProvider extends Component {
     }    
 
     getInfo(){
-        axios.get("https://xcommerce-server.herokuapp.com/api/login/me", {
+        axios.get("http://localhost:6969/api/login/me" ||"https://xcommerce-server.herokuapp.com/api/login/me", {
           withCredentials: true
         })
         .then(data => {

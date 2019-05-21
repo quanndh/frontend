@@ -1,4 +1,5 @@
 
+
 body, html {
   padding: 0;
   margin: 0;
@@ -52,3 +53,237 @@ input.error {
   text-align: right
 }
 
+.container {
+  width: 300px;
+  height: 400px;
+  
+  position: relative;
+  top:0; right: 0; left: 0; bottom: 0;
+  margin: auto;
+  background-color: black;
+  background-size: cover;
+  cursor: pointer;
+  
+  -webkit-box-shadow: 0 0 5px #FFF;
+        box-shadow: 0 0 5px #000;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 2fr 2fr 1fr;
+  
+  background: rgba(77, 77, 77, .9);
+  color: #FFF;
+  opacity: 0;
+  transition: all 0.5s;
+  
+}
+
+.items {
+  padding-left: 20px;
+  letter-spacing: 3px;
+}
+
+.head {
+  font-size: 30px;
+  line-height: 40px;
+  
+  transform: translateY(40px);
+  transition: all 0.7s;
+}
+
+.head hr {
+  display: block;
+  width: 0;
+  
+  border: none;
+  border-bottom: solid 2px #FFF;
+  
+  position: absolute;
+  bottom: 0; left:20px;
+  
+  transition: all .5s;
+}
+
+.price {
+  font-size: 22px;
+  line-height: 10px;
+  font-weight: bold;  
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.7s;
+}
+
+.cart {
+  font-size: 12px;
+  opacity: 0;
+  letter-spacing: 1px;
+  transform: translateY(40px);
+  transition: all 0.7s;
+}
+
+.cart i {
+  font-size: 16px;
+}
+
+.cart span {
+  margin-left: 10px;
+}
+
+.container:hover .overlay {
+  opacity: 1;
+}
+
+.container:hover .overlay .head {
+  transform: translateY(0px);
+}
+
+.container:hover .overlay  hr {
+  width: 75px;
+  transition-delay: 0.4s;
+}
+
+.container:hover .overlay .price {
+  transform: translateY(0px);
+  transition-delay: 0.3s;
+  opacity: 1;
+}
+
+.container:hover .overlay .cart {
+  transform: translateY(0px);
+  transition-delay: 0.6s;
+  opacity: 1;
+}
+
+
+.container1 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  height: 700px;
+  margin: 30px;
+
+}
+
+.item1 {
+  display: grid;
+
+  height: 800px;
+}
+
+.item1 img {
+  grid-row: 1/6;
+  max-width: 90%;
+  height: 100%;
+  width: 100%; 
+}
+
+.imgss {
+  display: grid;
+  align-items: center;
+  grid-gap: 2px;
+}
+
+.imgss img {
+  max-width: 100%;
+  height: 100%;
+  width: 100%; 
+}
+
+.item2 {
+  background: rgb(158,158,158);
+  color: white;
+  height: 666px;
+  text-align: left;
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.item2 p{
+  color: white;
+}
+
+
+.font-al {
+  color: white;
+  margin: 20px 10px 0px 20px;
+  text-align: left;
+}
+
+
+
+.button-buy{
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  box-sizing: border-box;
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid gold;
+  border-radius: 0.6em;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-self: center;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  margin: 20px;
+  padding: 0.5em 7em;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Titillium Web', sans-serif;
+  font-weight: 700;
+}
+
+.btn:hover{
+  color: white;
+  outline: 0;
+}
+
+.btn:focus{
+  color: white;
+  outline: 0;
+}
+
+.fourth {
+  border-color: white;
+  color: #fff;
+  background-image: linear-gradient(45deg,white 50%, transparent 50%);
+  background-position: 100%;
+  background-size: 400%
+}
+
+.fourth:hover{
+  transition: 300ms ease-in-out
+}
+
+.fourthhover:hover {
+  background-position: 0;
+}
+
+row-menu {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  justify-items: start;
+  padding-left: 20px;
+  padding-right: 20px;
+
+}
+
+.row-menu h3 {
+  padding-top: 30px;
+  padding-left: 15px;
+  color: white;
+  text-decoration: underline;
+  -webkit-text-decoration-color: white;
+  text-decoration-color: white;
+  text-underline-position: under;
+}

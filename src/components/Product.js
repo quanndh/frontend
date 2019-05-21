@@ -1,45 +1,42 @@
 import React, { Component } from 'react';
-import {Grid, CardActionArea, CardActions, Button, CardContent, Card, CardMedia, Typography} from "@material-ui/core";
+import {Grid} from "@material-ui/core";
 import {Link} from "react-router-dom";
 import { CartContext } from "../contexts/Cart";
 class Product extends Component {
     render() {
-        const { product, width } = this.props;
+        const { product } = this.props;
         
         return (
             <Grid item xs={12} md={6} lg={3}>
-                <Card>
-                <Link to={`/products/${product._id}`} style={{textDecoration: "none"}}>
-                    <CardActionArea>
-                        <CardMedia
-                        style={{height: "400px", width: {width}}}
-                        image={product.imageUrl}
-                        title={product.title}
-                        />
-                        <CardContent>
-                        <Typography gutterBottom variant="h3" component="h2">
-                            {product.title}
-                        </Typography>
-                        <Typography gutterBottom variant="h3" component="h2">
-                            ${product.price}
-                        </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                </Link>
-                    <CartContext.Consumer>
+
+                <div class="container" style={{background: `url(${product.imageUrl})`}}>
+                    <div class="overlay">
+                       
+                        <div class = "items"></div>
+                        <Link to={`/products/${product._id}`} style={{textDecoration: "none", textDecorationColor: "none"}}>
+                        <div class = "items head">
+                            <p>{product.title}</p>
+                            <hr/>
+                        </div>
+                        <div class = "items price">
+                            <p class="new">{product.price}</p>
+                        </div>
+                        </Link>
+                        <CartContext.Consumer>
                         
                         {
                             ({addToCart}) => (
-                                <CardActions> 
-                                    <Button size="large" color="primary" onClick={() => addToCart(this.props.product)}> Add to cart  </Button> 
-                                </CardActions>
+                                <div class="items cart" onClick={() => addToCart(this.props.product)}>
+                                    <i class="fa fa-shopping-cart"></i>
+                                    <span>ADD TO CART</span>
+                                </div>
                                
                             )   
                         }  
                         
-                    </CartContext.Consumer>
-                    
-                </Card>
+                        </CartContext.Consumer>
+                    </div>
+                </div>
                 
             </Grid>
         );

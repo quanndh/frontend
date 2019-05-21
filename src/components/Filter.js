@@ -44,7 +44,7 @@ class Filter extends Component {
         return (
             <Paper style={{height: "500px", width: "90%", marginLeft: "14px"}}>
                 <FormControl component="fieldset" style={{marginBottom: "50px"}}>
-                    <FormLabel component="legend" style={{fontSize: "28px" ,marginTop:"10"}}>Category</FormLabel>
+                    <FormLabel component="legend" style={{fontSize: "28px" ,marginTop:"10", paddingTop: "40px", paddingLeft: "20px"}}>Category</FormLabel>
                     <RadioGroup
                         aria-label="category"
                         name="category"
@@ -54,8 +54,8 @@ class Filter extends Component {
                         <FormControlLabel
                         value="imported"
                         control={<Radio color="primary" />}
-                        label="Imported"
                         labelPlacement="start"
+                        label="Imported"
                         />
                         <FormControlLabel
                         value="interior"
@@ -72,16 +72,22 @@ class Filter extends Component {
                     </RadioGroup>
                 </FormControl>
 
-                <FormLabel component="legend" style={{fontSize: "28px", marginBottom: "10px"}}>Price: {price*1} (Highest 1000)</FormLabel>
+                <FormLabel 
+                  component="legend" 
+                  style={{fontSize: "28px", marginBottom: "10px", paddingTop: "40px", paddingLeft: "20px"}}
+                >
+                  Price: {price*1} (Highest 1000)
+                </FormLabel>
+
                 <Slider
-                value={price*1}
-                valueReducer={valueReducer}
-                aria-labelledby="label"
-                onChange={this.filterPrice}
-                min={200}
-                max={1000}
-                step={100}
-                style={{width: "90%", margin: "0 auto"}}
+                  value={price*1}
+                  valueReducer={valueReducer}
+                  aria-labelledby="label"
+                  onChange={this.filterPrice}
+                  min={200}
+                  max={1000}
+                  step={100}
+                  style={{width: "90%", margin: "0 auto"}}
                 />
              
             </Paper>
