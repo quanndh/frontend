@@ -23,14 +23,12 @@ class Main extends Component {
     }
     next() {
         this.setState({
-            page: this.state.page*1 + 1,
-            price: {value: 200}
+            page: this.state.page*1 + 1
         })
     }
     previous() {
         this.setState({
-            page: this.state.page*1 - 1,
-            price: {value: 200}
+            page: this.state.page*1 - 1
         })
     }
     searchChange = text => {
