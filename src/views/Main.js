@@ -64,6 +64,7 @@ class Main extends Component {
         
         if(this.state.page !== prevState.page){
             console.log("page" + this.state.page);
+            console.log(prevState.price.value)
             axios.get("http://localhost:6969/api/products/?page=" + this.state.page||"https://xcommerce-server.herokuapp.com/api/products/?page=" + this.state.page)
             .then(data => this.setState({products: data.data.data}))
             .catch(err => console.log(err))
