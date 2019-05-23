@@ -43,8 +43,8 @@ class Filter extends Component {
         const { category, price } = this.props;
         return (
             <Paper style={{height: "500px", width: "90%", marginLeft: "14px"}}>
-                <FormControl component="fieldset" style={{marginBottom: "50px"}}>
-                    <FormLabel component="legend" style={{fontSize: "28px" ,marginTop:"10", paddingTop: "40px", paddingLeft: "20px"}}>Category</FormLabel>
+                <FormControl component="fieldset" style={{marginBottom: "20px"}}>
+                    <FormLabel component="legend" style={{fontSize: "28px", paddingTop: "40px", paddingLeft: "20px"}}>Category</FormLabel>
                     <RadioGroup
                         aria-label="category"
                         name="category"
@@ -74,7 +74,7 @@ class Filter extends Component {
 
                 <FormLabel 
                   component="legend" 
-                  style={{fontSize: "28px", marginBottom: "10px", paddingTop: "40px", paddingLeft: "20px"}}
+                  style={{fontSize: "28px", marginBottom: "20px", paddingTop: "40px", paddingLeft: "20px"}}
                 >
                   Price: {price*1} (Highest 1000)
                 </FormLabel>
@@ -87,7 +87,7 @@ class Filter extends Component {
                   min={200}
                   max={1000}
                   step={100}
-                  style={{width: "90%", margin: "0 auto"}}
+                  style={{width: "90%", margin: "0 auto", marginTop:"10x"}}
                 />
              
             </Paper>
