@@ -9,7 +9,7 @@ class Product extends Component {
         return (
             <Grid item xs={12} md={6} lg={3}>
 
-                <div class="container" style={{background: `url(${product.imageUrl})`}}>
+                <div class="container" style={{background: `url(${product.imageUrl})`, backgroundSize: "contain", backgroundRepeat: "no-repeat"}}>
                     <div class="overlay">
                        
                         <div class = "items"></div>

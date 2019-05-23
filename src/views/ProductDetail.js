@@ -32,7 +32,7 @@ class ProductDetail extends Component {
                     <div class="container1">
 
                         <div class="item1">
-                            <img src={product.imageUrl} id="current" alt=""/>
+                            <img src={product.imageUrl} id="current" alt="" />
                             <div id="imgs" class="imgss">
                             
                             </div>
