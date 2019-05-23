@@ -5,6 +5,8 @@ import Product from '../components/Product';
 import { Grid } from "@material-ui/core";
 import axios from "axios";
 import Filter from '../components/Filter';
+import {KeyboardArrowLeft, KeyboardArrowRight} from '@material-ui/icons';
+
 class Main extends Component {
     constructor(props){
         super(props);
@@ -12,8 +14,22 @@ class Main extends Component {
             products: [],
             search: "",
             category: "all",
-            price: {value: 200}
+            price: {value: 200},
+            page: "",
+            nPage: "",
         }
+        this.next = this.next.bind(this);
+        this.previous = this.previous.bind(this);
+    }
+    next() {
+        this.setState({
+            page: this.state.page*1 + 1
+        })
+    }
+    previous() {
+        this.setState({
+            page: this.state.page*1 - 1
+        })
     }
     searchChange = text => {
         this.setState({search: text})
@@ -25,9 +41,9 @@ class Main extends Component {
     changePrice = text => {
         this.setState({price: text})
     }
-    componentWillMount(){
-        axios.get("https://xcommerce-server.herokuapp.com/api/products/")
-        .then(data => this.setState({products: data.data.data}))
+    componentDidMount(){
+        axios.get("http://localhost:6969/api/products/"||"https://xcommerce-server.herokuapp.com/api/products/")
+        .then(data => this.setState({products: data.data.data, nPages: data.data.nPages, page: 1}))
         .catch(err => console.log(err))
     }
 
@@ -44,11 +60,19 @@ class Main extends Component {
                 this.setState({products: data.data.data});
             })
             .catch(err => console.log(err))
-        }     
+        }    
+        
+        if(this.state.page !== prevState.page){
+            console.log("page" + this.state.page);
+            axios.get("http://localhost:6969/api/products/?page=" + this.state.page||"https://xcommerce-server.herokuapp.com/api/products/?page=" + this.state.page)
+            .then(data => this.setState({products: data.data.data}))
+            .catch(err => console.log(err))
+        }
+
     }
 
     render() {
-        const { products, search, category, price } = this.state;
+        const { products, search, category, price, page, nPages } = this.state;
         const displayProducts =  products ? products.filter(product => product.title.toLowerCase().includes(search)).map(product => 
                 <Product product={product} key={product._id}/>
         ) : "Loading..." ;
@@ -64,9 +88,22 @@ class Main extends Component {
                     <Grid container spacing={32}>
                         {displayProducts}
                     </Grid>
-                    
-                </Grid>
+                    <Grid item xs={12} style={{textAlign: "center", marginTop: "32px"}}>
+                        {
+                            page <= 1     
+                                ?<KeyboardArrowLeft style={{height: "50px", width: "50px", cursor: "not-allow", color: "grey"}}/>
+                                :<KeyboardArrowLeft  onClick={this.previous} style={{height: "50px", width: "50px", cursor: "pointer"}}/>
+                        }
+                        {
+                            page >= nPages
+                                ?<KeyboardArrowRight style={{height: "50px", width: "50px", cursor: "not-allow", color: "grey"}}/>
+                                :<KeyboardArrowRight onClick={this.next} style={{height: "50px", width: "50px", cursor: "pointer"}}/>
+                        }
+                        
+                    </Grid>
 
+                </Grid>
+                
                 <Grid item xs={12}>
                     <Footers className=""/>
                 </Grid>
