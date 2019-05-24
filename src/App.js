@@ -13,7 +13,7 @@ import _ from "lodash";
 class App extends Component {
 
   componentDidMount(){
-    console.log(this.context);
+    
   }
   
   render(){

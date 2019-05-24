@@ -11,7 +11,8 @@ class CartDetail extends Component {
     constructor(){
         super();
         this.state = {
-            items: []
+            items: [],
+            user: {}
         }
         
     }
@@ -23,11 +24,7 @@ class CartDetail extends Component {
     render() {
         const onSuccess = (payment) => {
             let items = this.state.items;
-            let orderedItems = items.map(item => {
-                return {title: item.title, qty: item.qty}
-            });
             
-            console.log(orderedItems, payment);
             axios.post("https://xcommerce-server.herokuapp.com/api/order", {
                 buyerEmail: payment.email,
                 orderedItems: items,
