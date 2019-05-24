@@ -16,14 +16,14 @@ class LoginForm extends Component {
         return (
             <Formik
                 onSubmit={(values, { setSubmitting }) => {
-                    axios.post( "http://localhost:6969/api/login"||"https://xcommerce-server.herokuapp.com/api/login/", {
+                    axios.post( "https://xcommerce-server.herokuapp.com/api/login/", {
                         email: values.email,
                         password: values.password
                     }, {
                         withCredentials: true
                     })
                     .then((res) => {
-                            window.location.href = "http://localhost:3000/"||"https://xcommerce-client.herokuapp.com"
+                            window.location.href = "https://xcommerce-client.herokuapp.com"
                         
                     })
                     .catch(() => this.setState({

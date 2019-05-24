@@ -42,7 +42,7 @@ class Main extends Component {
         this.setState({price: text})
     }
     componentDidMount(){
-        axios.get("https://xcommerce-server.herokuapp.com/api/products/" || "http://localhost:6969/api/products/")
+        axios.get("https://xcommerce-server.herokuapp.com/api/products/" )
         .then(data => this.setState({products: data.data.data, nPages: data.data.nPages, page: 1}))
         .catch(err => console.log(err))
     }
@@ -65,7 +65,7 @@ class Main extends Component {
         if(this.state.page !== prevState.page){
             console.log("page" + this.state.page);
             console.log(prevState.price.value)
-            axios.get("http://localhost:6969/api/products/?page=" + this.state.page||"https://xcommerce-server.herokuapp.com/api/products/?page=" + this.state.page)
+            axios.get("https://xcommerce-server.herokuapp.com/api/products/?page=" + this.state.page)
             .then(data => this.setState({products: data.data.data}))
             .catch(err => console.log(err))
         }

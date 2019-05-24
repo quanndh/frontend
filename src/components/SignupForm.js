@@ -16,7 +16,7 @@ class SignupForm extends Component {
         return (
             <Formik
                 onSubmit={(values, { setSubmitting }) => {
-                    axios.post("http://localhost:6969/api/users"||"https://xcommerce-server.herokuapp.com/api/users/", {
+                    axios.post("https://xcommerce-server.herokuapp.com/api/users/", {
                         email: values.email,
                         password: values.password,
                         username: values.username
@@ -24,7 +24,7 @@ class SignupForm extends Component {
                     .then((res) => {
                         if(res.data.message){
                              this.setState({message: res.data.message});
-                        } else  window.location.href = "http://localhost:3000/login"||"https://xcommerce-client.herokuapp.com/login"
+                        } else  window.location.href = "https://xcommerce-client.herokuapp.com/login"
                         
                     })
                     .catch(err => console.error(err))
