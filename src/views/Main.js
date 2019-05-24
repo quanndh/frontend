@@ -42,7 +42,7 @@ class Main extends Component {
         this.setState({price: text})
     }
     componentDidMount(){
-        axios.get("http://localhost:6969/api/products/"||"https://xcommerce-server.herokuapp.com/api/products/")
+        axios.get("https://xcommerce-server.herokuapp.com/api/products/" || "http://localhost:6969/api/products/")
         .then(data => this.setState({products: data.data.data, nPages: data.data.nPages, page: 1}))
         .catch(err => console.log(err))
     }
