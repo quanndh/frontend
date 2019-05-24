@@ -98,7 +98,7 @@ class Main extends Component {
                                 :<KeyboardArrowLeft  onClick={this.previous} style={{height: "50px", width: "50px", cursor: "pointer"}}/>
                         }
                         {
-                            page >= nPages
+                            page === nPages*1
                                 ?<KeyboardArrowRight style={{height: "50px", width: "50px", cursor: "not-allow", color: "grey"}}/>
                                 :<KeyboardArrowRight onClick={this.next} style={{height: "50px", width: "50px", cursor: "pointer"}}/>
                         }
