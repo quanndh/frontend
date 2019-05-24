@@ -6,6 +6,7 @@ import { Grid } from "@material-ui/core";
 import axios from "axios";
 import Filter from '../components/Filter';
 import {KeyboardArrowLeft, KeyboardArrowRight} from '@material-ui/icons';
+import AdsBanner from '../components/AdsBanner';
 
 class Main extends Component {
     constructor(props){
@@ -82,6 +83,7 @@ class Main extends Component {
                 <Grid item xs={12} style={{marginBottom: "40px"}}>
                     <Navbar  onChange={this.searchChange} />
                 </Grid>
+                <Grid item xs={12}> <AdsBanner /></Grid>
                 <Grid item xs={12} md={3}>
                     <Filter onChange={this.changeCategory} category={category} price={price.value} changePrice={this.changePrice}/>
                 </Grid>
