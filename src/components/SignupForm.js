@@ -20,6 +20,8 @@ class SignupForm extends Component {
                         email: values.email,
                         password: values.password,
                         username: values.username
+                    }, {
+                        withCredentials: true
                     })
                     .then((res) => {
                         if(res.data.message){

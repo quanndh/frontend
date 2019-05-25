@@ -43,22 +43,24 @@ class Main extends Component {
         this.setState({price: text})
     }
     componentDidMount(){
-        axios.get("https://xcommerce-server.herokuapp.com/api/products/?page=1" )
+        axios.get("https://xcommerce-server.herokuapp.com/api/products/?page=" + this.state.page )
         .then(data => this.setState({products: data.data.data, nPages: data.data.nPages, page: 1}))
         .catch(err => console.log(err))
     }
 
     componentDidUpdate(prevProps, prevState){  
-        if(this.state.category === prevState.category && this.state.price.value !== prevState.price.value) {
-            axios.get("https://xcommerce-server.herokuapp.com/api/products/filter?price=" + this.state.price.value + "&category=" + this.state.category)
+        if(this.state.category === prevState.category && this.state.price.value !== prevState.price.value && this.state.page === prevState.page) {
+            axios.get("https://xcommerce-server.herokuapp.com/api/products/?price=" + this.state.price.value + "&category=" + this.state.category + "&page=" + this.state.page)
             .then(data => {
                 this.setState({products: data.data.data});
+                console.log(data);
             })
             .catch(err => console.log(err))
-        } else if(this.state.category !== prevState.category && this.state.price.value === prevState.price.value) {
-            axios.get("https://xcommerce-server.herokuapp.com/api/products/filter?price=" + this.state.price.value + "&category=" + this.state.category)
+        } else if(this.state.category !== prevState.category && this.state.price.value === prevState.price.value && this.state.page === prevState.page) {
+            axios.get("https://xcommerce-server.herokuapp.com/api/products/?price=" + this.state.price.value + "&category=" + this.state.category + "&page=" + this.state.page)
             .then(data => {
                 this.setState({products: data.data.data});
+                console.log(data.mess);
             })
             .catch(err => console.log(err))
         }    
@@ -97,6 +99,7 @@ class Main extends Component {
                                 ?<KeyboardArrowLeft style={{height: "50px", width: "50px", cursor: "not-allow", color: "grey"}}/>
                                 :<KeyboardArrowLeft  onClick={this.previous} style={{height: "50px", width: "50px", cursor: "pointer"}}/>
                         }
+                        {page}
                         {
                             page === nPages*1
                                 ?<KeyboardArrowRight style={{height: "50px", width: "50px", cursor: "not-allow", color: "grey"}}/>
