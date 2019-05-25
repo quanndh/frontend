@@ -52,6 +52,12 @@ class Filter extends Component {
                         onChange={this.handleChange}
                     >
                         <FormControlLabel
+                        value="all"
+                        control={<Radio color="primary" />}
+                        label="All"
+                        labelPlacement="start"
+                        />
+                        <FormControlLabel
                         value="imported"
                         control={<Radio color="primary" />}
                         labelPlacement="start"
@@ -61,12 +67,6 @@ class Filter extends Component {
                         value="interior"
                         control={<Radio color="primary" />}
                         label="Interior"
-                        labelPlacement="start"
-                        />
-                        <FormControlLabel
-                        value="handmade"
-                        control={<Radio color="primary" />}
-                        label="Handmade"
                         labelPlacement="start"
                         />
                     </RadioGroup>
