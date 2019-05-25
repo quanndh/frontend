@@ -4,14 +4,31 @@ import {Link} from "react-router-dom";
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import { css } from '@emotion/core';
+// First way to import
+import { ClipLoader } from 'react-spinners';
+
+const override = css`
+    display: block;
+    margin: 20px auto;
+    border-color: red;
+`;
 
 class LoginForm extends Component {
     constructor(){
         super();
         this.state = {
-            message: ""
+            message: "",
+            loading: false
         }
     }
+
+    handleLogin = () => {
+        this.setState({
+            loading: true
+        })
+    }
+   
     render() {
         return (
             <Formik
@@ -23,11 +40,15 @@ class LoginForm extends Component {
                         withCredentials: true
                     })
                     .then((res) => {
-                            window.location.href = "https://xcommerce-client.herokuapp.com"
+                        this.setState({
+                            loading: false
+                        })
+                        window.location.href = "https://xcommerce-client.herokuapp.com";
                         
                     })
                     .catch(() => this.setState({
-                        message: "Wrong email or password"
+                        message: "Wrong email or password",
+                        loading: false
                     }))
                 }}
                 validationSchema={Yup.object().shape({
@@ -95,6 +116,7 @@ class LoginForm extends Component {
                                     <h4>If you don't have an account yet, <Link to="/signup" style={{textDecoration: "none"}}>Sign Up</Link></h4>
 
                                     <Button 
+                                        onClick={this.handleLogin}
                                         type="submit"
                                         variant="outlined" 
                                         color="inherit" 
@@ -102,8 +124,20 @@ class LoginForm extends Component {
                                         Login
                                     </Button>
                                     
-                                </div>                              
+                                    <div className='sweet-loading'>
+                                        <ClipLoader
+                                        css={override}
+                                        sizeUnit={"px"}
+                                        size={70}
+                                        color={'#000'}
+                                        loading={this.state.loading}
+                                        />
+                                    </div>   
+                                </div> 
+                                                           
                             </div>
+                            
+                            
                         </form>
                     );
                 }}

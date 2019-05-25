@@ -10,6 +10,7 @@ import { Typography } from '@material-ui/core';
 import _ from "lodash";
 import Axios from 'axios';
 
+
 class NavbarSmall extends Component {
     constructor(props){
         super(props);
@@ -34,7 +35,11 @@ class NavbarSmall extends Component {
         })
         .then(() => window.location.href = "/")
         .catch(err => console.log(err))
-        
+    }
+
+    clickSearch = () => {
+        console.log("small")
+        this.props.onClick();
     }
 
     render() {
@@ -44,13 +49,14 @@ class NavbarSmall extends Component {
                     
                     <Navigation>
                         <Link className="nav-text"  to="/" >Home</Link>
-                        <Textfield
-                            value={searchText}
-                            onChange={this.textChange}
-                            label="Search"
-                            expandable
-                            expandableIcon="search"
-                        />
+                            <Textfield
+                                value={searchText}
+                                onChange={this.textChange}
+                                label="Search"
+                                expandable
+                                expandableIcon="search"
+                                onClick={this.clickSearch}
+                            />
                         <Link className="nav-text"  to="/cart">
                             <IconButton aria-label="Cart">
                             <CartContext.Consumer>

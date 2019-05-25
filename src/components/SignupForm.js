@@ -4,14 +4,32 @@ import {Link} from "react-router-dom";
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import axios from "axios";
+import { css } from '@emotion/core';
+// First way to import
+import { ClipLoader } from 'react-spinners';
+
+const override = css`
+    display: block;
+    margin: 20px auto;
+    border-color: red;
+`;
+
 
 class SignupForm extends Component {
     constructor(){
         super();
         this.state = {
-            message: ""
+            message: "",
+            loading: false
         }
     }
+
+    handleSignUp = () => {
+        this.setState({
+            loading: true
+        })
+    }
+    
     render() {
         return (
             <Formik
@@ -24,12 +42,16 @@ class SignupForm extends Component {
                         withCredentials: true
                     })
                     .then((res) => {
-                        if(res.data.message){
-                             this.setState({message: res.data.message});
-                        } else  window.location.href = "https://xcommerce-client.herokuapp.com/login"
+                        this.setState({
+                            loading: false
+                        })
+                        window.location.href = "https://xcommerce-client.herokuapp.com/login"
                         
                     })
-                    .catch(err => console.error(err))
+                    .catch(() =>  this.setState({
+                        message: "Email is taken",
+                        loading: false
+                    }))
                 }}
                 validationSchema={Yup.object().shape({
                     email: Yup.string()
@@ -116,13 +138,26 @@ class SignupForm extends Component {
                                     
                                     <h4>Already have an account, <Link to="/login" style={{textDecoration: "none"}}>Login</Link></h4>
 
-                                    <Button type="submit" variant="outlined" color="inherit" style={{width: "120px", height: "40px", fontSize:"18px"}} >
+                                    <Button type="submit" onClick={this.handleSignUp} variant="outlined" color="inherit" style={{width: "120px", height: "40px", fontSize:"18px"}} >
                                         Sign up
                                     </Button>
+                                    
+                                    <div className='sweet-loading'>
+                                        <ClipLoader
+                                        css={override}
+                                        sizeUnit={"px"}
+                                        size={70}
+                                        color={'#000'}
+                                        loading={this.state.loading}
+                                        />
+                                    </div> 
                                     
                                 </div>
                                 
                             </div>
+
+                            
+                
                         </form>
                     );
                 

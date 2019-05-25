@@ -20,12 +20,18 @@ class Navbar extends Component {
     }
 
     onClick = text => this.props.onClick(text);
+
+    clickSearch = () => {
+        console.log("nav")
+
+        this.props.onClick();
+    }
     render() {
       
         return (
                 <div className="navbar" style={{height: '100vh'}}>
                     <Layout  style={{}}>
-                        <NavbarSmall  onChange={this.onChange} />
+                        <NavbarSmall  onChange={this.onChange} onClick={this.clickSearch}/>
                         <Drawer style={{position: "fixed"}} className="drawer">
                             <Navigation>
                                 <Link to="/" >Home</Link>

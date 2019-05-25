@@ -7,6 +7,7 @@ import axios from "axios";
 import Filter from '../components/Filter';
 import {KeyboardArrowLeft, KeyboardArrowRight} from '@material-ui/icons';
 import AdsBanner from '../components/AdsBanner';
+import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 class Main extends Component {
     constructor(props){
@@ -21,6 +22,7 @@ class Main extends Component {
         }
         this.next = this.next.bind(this);
         this.previous = this.previous.bind(this);
+        this.smooth = React.createRef();
     }
     next() {
         this.setState({
@@ -42,6 +44,16 @@ class Main extends Component {
     changePrice = text => {
         this.setState({price: text})
     }
+
+    clickSearch = () => {
+        for (let i = 0; i <= 1120; i += 50) {
+            setTimeout(function() {
+                window.scrollTo(0, i)
+            }, i / 3);
+          }
+        
+    }
+
     componentDidMount(){
         axios.get("https://xcommerce-server.herokuapp.com/api/products/?page=" + this.state.page )
         .then(data => this.setState({products: data.data.data, nPages: data.data.nPages, page: 1}))
@@ -49,18 +61,17 @@ class Main extends Component {
     }
 
     componentDidUpdate(prevProps, prevState){  
-        if(this.state.category === prevState.category && this.state.price.value !== prevState.price.value && this.state.page === prevState.page) {
-            axios.get("https://xcommerce-server.herokuapp.com/api/products/?price=" + this.state.price.value + "&category=" + this.state.category + "&page=" + this.state.page)
+        if(this.state.category === prevState.category && this.state.price.value !== prevState.price.value) {
+            axios.get("https://xcommerce-server.herokuapp.com/api/products/filter/?price=" + this.state.price.value + "&category=" + this.state.category + "&page=" + this.state.page)
             .then(data => {
                 this.setState({products: data.data.data});
                 console.log(data);
             })
             .catch(err => console.log(err))
-        } else if(this.state.category !== prevState.category && this.state.price.value === prevState.price.value && this.state.page === prevState.page) {
-            axios.get("https://xcommerce-server.herokuapp.com/api/products/?price=" + this.state.price.value + "&category=" + this.state.category + "&page=" + this.state.page)
+        } else if(this.state.category !== prevState.category && this.state.price.value === prevState.price.value ) {
+            axios.get("https://xcommerce-server.herokuapp.com/api/products/filter/?price=" + this.state.price.value + "&category=" + this.state.category + "&page=" + this.state.page)
             .then(data => {
                 this.setState({products: data.data.data});
-                console.log(data.mess);
             })
             .catch(err => console.log(err))
         }    
@@ -83,13 +94,13 @@ class Main extends Component {
         return (
             <Grid container>
                 <Grid item xs={12} style={{marginBottom: "40px"}}>
-                    <Navbar  onChange={this.searchChange} />
+                    <Navbar onClick={this.clickSearch}  onChange={this.searchChange} />
                 </Grid>
                 <Grid item xs={12}> <AdsBanner /></Grid>
                 <Grid item xs={12} md={3}>
                     <Filter onChange={this.changeCategory} category={category} price={price.value} changePrice={this.changePrice}/>
                 </Grid>
-                <Grid item xs={12} md={9} style={{marginBottom: "40px", width:"99%"}}>
+                <Grid id="Product" item xs={12} md={9} style={{marginBottom: "40px", width:"99%"}}>
                     <Grid container spacing={32}>
                         {displayProducts}
                     </Grid>
