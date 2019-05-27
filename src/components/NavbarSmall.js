@@ -49,14 +49,16 @@ class NavbarSmall extends Component {
                     
                     <Navigation>
                         <Link className="nav-text"  to="/" >Home</Link>
-                            <Textfield
-                                value={searchText}
-                                onChange={this.textChange}
-                                label="Search"
-                                expandable
-                                expandableIcon="search"
-                                onClick={this.clickSearch}
-                            />
+                        <Textfield
+                            className="nav-text"
+                            style={{marginTop: "5px"}}
+                            value={searchText}
+                            onChange={this.textChange}
+                            label="Search"
+                            expandable
+                            expandableIcon="search"
+                            onClick={this.clickSearch}
+                        />
                         <Link className="nav-text"  to="/cart">
                             <IconButton aria-label="Cart">
                             <CartContext.Consumer>

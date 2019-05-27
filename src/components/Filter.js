@@ -1,40 +1,22 @@
 import React, { Component } from 'react';
-import { FormControl, FormLabel, RadioGroup, Radio, FormControlLabel, Paper} from "@material-ui/core"
-import {Slider} from "@material-ui/lab";
-import {defaultValueReducer} from "@material-ui/lab/Slider"
+import { Tabs } from "antd";
+import { Slider } from "antd";
+import { Typography } from 'antd';
 
-function valueReducer(rawValue, props, event) {
-    const { disabled, max, min, step } = props;
-  
-    function roundToStep(number) {
-      return Math.round(number / step) * step;
-    }
-  
-    if (!disabled && step) {
-      if (rawValue > min && rawValue < max) {
-        if (rawValue === max - step) {
-          // If moving the Slider using arrow keys and value is formerly an maximum edge value
-          return roundToStep(rawValue + step / 2);
-        }
-        if (rawValue === min + step) {
-          // Same for minimum edge value
-          return roundToStep(rawValue - step / 2);
-        }
-        return roundToStep(rawValue);
-      }
-      return rawValue;
-    }
-  
-    return defaultValueReducer(rawValue, props, event);
-}
+const { Paragraph  } = Typography;
+
+const TabPane = Tabs.TabPane;
+
 
 class Filter extends Component {
-    handleChange = event => {
-        this.props.onChange(event.target.value);
+    handleChange = key => {
+      console.log(key)  
+      this.props.onChange(key);
     };
 
-    filterPrice = (e,value) => {   
-        this.props.changePrice({ value });
+    filterPrice = (value) => { 
+      console.log(value)  
+      this.props.changePrice( value );
     };
 
     
@@ -42,55 +24,38 @@ class Filter extends Component {
     render() {
         const { category, price } = this.props;
         return (
-            <Paper style={{height: "500px", width: "90%", marginLeft: "14px"}}>
-                <FormControl component="fieldset" style={{marginBottom: "20px"}}>
-                    <FormLabel component="legend" style={{fontSize: "28px", paddingTop: "40px", paddingLeft: "20px"}}>Category</FormLabel>
-                    <RadioGroup
-                        aria-label="category"
-                        name="category"
-                        value={category}
-                        onChange={this.handleChange}
-                    >
-                        <FormControlLabel
-                        value="all"
-                        control={<Radio color="primary" />}
-                        label="All"
-                        labelPlacement="start"
-                        />
-                        <FormControlLabel
-                        value="imported"
-                        control={<Radio color="primary" />}
-                        labelPlacement="start"
-                        label="Imported"
-                        />
-                        <FormControlLabel
-                        value="interior"
-                        control={<Radio color="primary" />}
-                        label="Interior"
-                        labelPlacement="start"
-                        />
-                    </RadioGroup>
-                </FormControl>
+            <div style={{height: "500px", width: "90%", marginLeft: "14px"}}>
 
-                <FormLabel 
-                  component="legend" 
-                  style={{fontSize: "28px", marginBottom: "20px", paddingTop: "40px", paddingLeft: "20px"}}
-                >
-                  Price: {price*1} (Highest 1000)
-                </FormLabel>
+                <Tabs style={{fontSize: "28px", height: "220px"}} defaultActiveKey={category} onChange={this.handleChange} tabPosition="left" size="large">
+                    <TabPane tab="All" key="all" style={{fontSize: "24px", fontWeight: "200"}}>
+                      All
+                    </TabPane>
+                    <TabPane tab="Imported" key="imported" style={{fontSize: "24px", fontWeight: "200"}}>
+                     Imported
+                    </TabPane>
+                    <TabPane tab="Interior" key="interior" style={{fontSize: "24px", fontWeight: "200"}}>
+                      Interior
+                    </TabPane>
+                </Tabs>
 
-                <Slider
-                  value={price*1}
-                  valueReducer={valueReducer}
-                  aria-labelledby="label"
+                <div style={{fontSize: "24px", fontWeight: "200" ,marginBottom: "20px", paddingTop: "40px", paddingLeft: "10px"}}>
+                  <Paragraph>Price: {price[0]} - {price[1]}</Paragraph >
+                </div>
+
+
+                <div>
+                  <Slider 
+                  min={200} 
+                  max={1000} 
+                  range defaultValue={price} 
+                  disabled={false} 
+                  step={100} 
                   onChange={this.filterPrice}
-                  min={200}
-                  max={1000}
-                  step={100}
-                  style={{width: "90%", margin: "0 auto", marginTop:"10x"}}
-                />
+                  />
+                </div>
              
-            </Paper>
+            </div>
+
             
         );
     }

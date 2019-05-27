@@ -7,7 +7,7 @@ import axios from "axios";
 import Filter from '../components/Filter';
 import {KeyboardArrowLeft, KeyboardArrowRight} from '@material-ui/icons';
 import AdsBanner from '../components/AdsBanner';
-import AnchorLink from 'react-anchor-link-smooth-scroll'
+import _ from "lodash";
 
 class Main extends Component {
     constructor(props){
@@ -16,13 +16,12 @@ class Main extends Component {
             products: [],
             search: "",
             category: "all",
-            price: {value: 200},
+            price: [200, 1000],
             page: "",
             nPage: "",
         }
         this.next = this.next.bind(this);
         this.previous = this.previous.bind(this);
-        this.smooth = React.createRef();
     }
     next() {
         this.setState({
@@ -41,14 +40,14 @@ class Main extends Component {
         this.setState({category: text})
     }
 
-    changePrice = text => {
-        this.setState({price: text})
+    changePrice = value => {
+        this.setState({price: value})
     }
 
     clickSearch = () => {
         for (let i = 0; i <= 1120; i += 50) {
             setTimeout(function() {
-                window.scrollTo(0, i)
+                window.scrollTo(window.scrollY, i)
             }, i / 3);
           }
         
@@ -61,15 +60,14 @@ class Main extends Component {
     }
 
     componentDidUpdate(prevProps, prevState){  
-        if(this.state.category === prevState.category && this.state.price.value !== prevState.price.value) {
-            axios.get("https://xcommerce-server.herokuapp.com/api/products/filter/?price=" + this.state.price.value + "&category=" + this.state.category + "&page=" + this.state.page)
+        if(this.state.category === prevState.category && !_.isEqual(this.state.price, prevState.price)) {
+            axios.get("https://xcommerce-server.herokuapp.com/api/products/filter/?price=" + this.state.price[0] + "&price2=" + this.state.price[1] +  "&category=" + this.state.category + "&page=" + this.state.page)
             .then(data => {
                 this.setState({products: data.data.data});
-                console.log(data);
             })
             .catch(err => console.log(err))
-        } else if(this.state.category !== prevState.category && this.state.price.value === prevState.price.value ) {
-            axios.get("https://xcommerce-server.herokuapp.com/api/products/filter/?price=" + this.state.price.value + "&category=" + this.state.category + "&page=" + this.state.page)
+        } else if(this.state.category !== prevState.category && _.isEqual(this.state.price, prevState.price)) {
+            axios.get("https://xcommerce-server.herokuapp.com/api/products/filter/?price1=" + this.state.price[0] + "&price2=" + this.state.price[1] + "&category=" + this.state.category + "&page=" + this.state.page)
             .then(data => {
                 this.setState({products: data.data.data});
             })
@@ -78,7 +76,7 @@ class Main extends Component {
         
         if(this.state.page !== prevState.page){
             console.log("page" + this.state.page);
-            console.log(prevState.price.value)
+            console.log(prevState.price)
             axios.get("https://xcommerce-server.herokuapp.com/api/products/?page=" + this.state.page)
             .then(data => this.setState({products: data.data.data}))
             .catch(err => console.log(err))
@@ -98,7 +96,7 @@ class Main extends Component {
                 </Grid>
                 <Grid item xs={12}> <AdsBanner /></Grid>
                 <Grid item xs={12} md={3}>
-                    <Filter onChange={this.changeCategory} category={category} price={price.value} changePrice={this.changePrice}/>
+                    <Filter onChange={this.changeCategory} category={category} price={price} changePrice={this.changePrice}/>
                 </Grid>
                 <Grid id="Product" item xs={12} md={9} style={{marginBottom: "40px", width:"99%"}}>
                     <Grid container spacing={32}>
@@ -110,7 +108,7 @@ class Main extends Component {
                                 ?<KeyboardArrowLeft style={{height: "50px", width: "50px", cursor: "not-allow", color: "grey"}}/>
                                 :<KeyboardArrowLeft  onClick={this.previous} style={{height: "50px", width: "50px", cursor: "pointer"}}/>
                         }
-                        {page}
+                        {page} / {nPages}
                         {
                             page === nPages*1
                                 ?<KeyboardArrowRight style={{height: "50px", width: "50px", cursor: "not-allow", color: "grey"}}/>

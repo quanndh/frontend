@@ -41,7 +41,7 @@ class Navbar extends Component {
                         </Drawer>
                         <Content style={{display: "flex", justifyContent: "center", alignItems: "center", color: "white"}}>
                             <div style={{maxWidth: "50%", fontSize: "28px"}}>
-                                <h2 style={{textAlign: "center"}}>WHY DRINK AND DRIVE, WHILE YOU CAN SMOKE AND TRAVEL</h2>
+                                <h2 style={{textAlign: "center", color: "white"}}>WHY DRINK AND DRIVE, WHILE YOU CAN SMOKE AND TRAVEL</h2>
                             
                                 <p style={{paddingTop: "20px", wordWrap: "break-word",fontSize: "20px", textAlign: "center"}}>LOVE IS A SMOKE MADE WITH THE FUME OF SIGHS</p>
                             </div>
