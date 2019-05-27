@@ -45,13 +45,11 @@ class NavbarSmall extends Component {
     render() {
         const { searchText} = this.props;
         return (
-                <Header className="nav" transparent title="ShopCANA" style={{transition: ".22s ease-in",width: "100%",right: "3.5px", position: 'fixed', backgroundColor: "black",  background: "linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.7))"}}>
+                <Header className="nav" transparent title="ShopCANA" style={{transition: ".22s ease-in", right: "2.8px", width: "100vw", position: 'fixed', backgroundColor: "black",  }}>
                     
                     <Navigation>
                         <Link className="nav-text"  to="/" >Home</Link>
                         <Textfield
-                            className="nav-text"
-                            style={{marginTop: "5px"}}
                             value={searchText}
                             onChange={this.textChange}
                             label="Search"
@@ -59,6 +57,7 @@ class NavbarSmall extends Component {
                             expandableIcon="search"
                             onClick={this.clickSearch}
                         />
+                        
                         <Link className="nav-text"  to="/cart">
                             <IconButton aria-label="Cart">
                             <CartContext.Consumer>

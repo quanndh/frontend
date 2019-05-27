@@ -34,7 +34,7 @@ class Product extends Component {
                                     addToCart(product)
                                 }
                             }}>
-                                <i style={{color: "white"}} class="fa fa-shopping-cart"></i>
+                                <i style={{color: "white"}} className="fa fa-shopping-cart"></i>
                                 <span>ADD TO CART</span>
                             </div>
                             

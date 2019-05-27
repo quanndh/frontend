@@ -17,7 +17,7 @@ class Main extends Component {
             search: "",
             category: "all",
             price: [200, 1000],
-            page: "",
+            page: 1,
             nPage: "",
         }
         this.next = this.next.bind(this);
@@ -55,7 +55,7 @@ class Main extends Component {
 
     componentDidMount(){
         axios.get("https://xcommerce-server.herokuapp.com/api/products/?page=" + this.state.page )
-        .then(data => this.setState({products: data.data.data, nPages: data.data.nPages, page: 1}))
+        .then(data => this.setState({products: data.data.data, nPages: data.data.nPages}))
         .catch(err => console.log(err))
     }
 
@@ -63,13 +63,14 @@ class Main extends Component {
         if(this.state.category === prevState.category && !_.isEqual(this.state.price, prevState.price)) {
             axios.get("https://xcommerce-server.herokuapp.com/api/products/filter/?price=" + this.state.price[0] + "&price2=" + this.state.price[1] +  "&category=" + this.state.category + "&page=" + this.state.page)
             .then(data => {
-                this.setState({products: data.data.data});
+                this.setState({products: data.data.data, nPage: data.data.nPages});
             })
             .catch(err => console.log(err))
         } else if(this.state.category !== prevState.category && _.isEqual(this.state.price, prevState.price)) {
-            axios.get("https://xcommerce-server.herokuapp.com/api/products/filter/?price1=" + this.state.price[0] + "&price2=" + this.state.price[1] + "&category=" + this.state.category + "&page=" + this.state.page)
+            console.log(this.state.category)
+            axios.get("https://xcommerce-server.herokuapp.com/api/products/filter/?price=" + this.state.price[0] + "&price2=" + this.state.price[1] + "&category=" + this.state.category + "&page=" + this.state.page)
             .then(data => {
-                this.setState({products: data.data.data});
+                this.setState({products: data.data.data, nPage: data.data.nPages});
             })
             .catch(err => console.log(err))
         }    
@@ -78,7 +79,7 @@ class Main extends Component {
             console.log("page" + this.state.page);
             console.log(prevState.price)
             axios.get("https://xcommerce-server.herokuapp.com/api/products/?page=" + this.state.page)
-            .then(data => this.setState({products: data.data.data}))
+            .then(data => this.setState({products: data.data.data, nPage: data.data.nPages}))
             .catch(err => console.log(err))
         }
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Tabs } from "antd";
 import { Slider } from "antd";
 import { Typography } from 'antd';
+import { Grid } from "@material-ui/core";
 
 const { Paragraph  } = Typography;
 
@@ -9,8 +10,7 @@ const TabPane = Tabs.TabPane;
 
 
 class Filter extends Component {
-    handleChange = key => {
-      console.log(key)  
+    handleChange = key => { 
       this.props.onChange(key);
     };
 
@@ -24,21 +24,24 @@ class Filter extends Component {
     render() {
         const { category, price } = this.props;
         return (
-            <div style={{height: "500px", width: "90%", marginLeft: "14px"}}>
-
-                <Tabs style={{fontSize: "28px", height: "220px"}} defaultActiveKey={category} onChange={this.handleChange} tabPosition="left" size="large">
-                    <TabPane tab="All" key="all" style={{fontSize: "24px", fontWeight: "200"}}>
-                      All
+            
+            <Grid container style={{height: "500px", width: "90%", marginLeft: "14px"}}>
+              <Grid item xs={12} style={{display: "flex", justifyContent: "center" }}>
+                 <Tabs style={{fontSize: "28px", height: "220px"}} defaultActiveKey={category} onChange={this.handleChange} tabPosition="right" size="large">
+                    <TabPane tab="All" key="all" >
+                     
                     </TabPane>
-                    <TabPane tab="Imported" key="imported" style={{fontSize: "24px", fontWeight: "200"}}>
-                     Imported
+                    <TabPane tab="Imported" key="imported">
+                     
                     </TabPane>
-                    <TabPane tab="Interior" key="interior" style={{fontSize: "24px", fontWeight: "200"}}>
-                      Interior
+                    <TabPane tab="Interior" key="interior" >
+                    
                     </TabPane>
                 </Tabs>
-
-                <div style={{fontSize: "24px", fontWeight: "200" ,marginBottom: "20px", paddingTop: "40px", paddingLeft: "10px"}}>
+              </Grid>
+               
+              <Grid item xs={12}>
+                <div style={{fontSize: "24px", fontWeight: "200" ,marginBottom: "20px", paddingLeft: "10px"}}>
                   <Paragraph>Price: {price[0]} - {price[1]}</Paragraph >
                 </div>
 
@@ -52,9 +55,13 @@ class Filter extends Component {
                   step={100} 
                   onChange={this.filterPrice}
                   />
-                </div>
-             
-            </div>
+                </div >
+              </Grid>
+
+               
+            </Grid>
+                
+
 
             
         );
