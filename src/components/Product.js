@@ -4,6 +4,8 @@ import {Link} from "react-router-dom";
 import { CartContext } from "../contexts/Cart";
 import { UserContext } from "../contexts/User";
 import _ from "lodash";
+import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCart';
+
 
 class Product extends Component {
     render() {
@@ -34,7 +36,7 @@ class Product extends Component {
                                     addToCart(product)
                                 }
                             }}>
-                                <i style={{color: "white"}} className="fa fa-shopping-cart"></i>
+                                <ShoppingCartOutlinedIcon />
                                 <span>ADD TO CART</span>
                             </div>
                             
