@@ -37,4 +37,4 @@ class UserProvider extends Component {
     }
 }
 
-export  {UserProvider, UserContext};
+export  {UserContext, UserProvider};

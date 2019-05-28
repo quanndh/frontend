@@ -38,14 +38,14 @@ class NavbarSmall extends Component {
     }
 
     clickSearch = () => {
-        console.log("small")
+        
         this.props.onClick();
     }
 
     render() {
         const { searchText} = this.props;
         return (
-                <Header className="nav" transparent title="ShopCANA" style={{transition: ".22s ease-in", right: "2.8px", width: "100vw", position: 'fixed', backgroundColor: "black",  }}>
+                <Header className="nav" transparent title="ShopCANA" style={{transition: ".22s ease-in", right: "2.8px", width: "100vw", position: 'fixed', backgroundColor: "black"}}>
                     
                     <Navigation>
                         <Link className="nav-text"  to="/" >Home</Link>

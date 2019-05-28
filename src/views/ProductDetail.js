@@ -3,6 +3,10 @@ import NavbarSmall from "../components/NavbarSmall";
 import Footers from "../components/Footer"
 import { Grid} from "@material-ui/core";
 import axios from "axios";
+import {CartContext} from "../contexts/Cart";
+import _ from "lodash";
+import {Button} from "antd";
+import { UserContext } from '../contexts/User';
 
 class ProductDetail extends Component {
     constructor(props){
@@ -24,33 +28,41 @@ class ProductDetail extends Component {
     render() {
         const { product } = this.state;
         return (
-            <Grid container spacing={16}>
+            <Grid container spacing={16} >
                 <Grid item xs={12} >
                     <NavbarSmall />
                 </Grid>
-                <Grid item xs={12} style={{marginTop: "80px" }}>
-                    <div class="container1">
-
-                        <div class="item1">
-                            <img src={product.imageUrl} id="current" alt="" />
-                            <div id="imgs" class="imgss">
+                <Grid item xs={12} style={{margin: "120px auto 0", maxWidth: "70vw"}}>
+                    <Grid container style={{ display: "flex", justifyContent: "center"}}>
+                        <Grid item xs={6}>
+                            <img src={product.imageUrl} alt=""/>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <h1>{product.title}</h1>
+                            <br/>
+                            <h3>Details</h3>
+                            <br/>
+                            <h5>{product.discription}</h5>
+                            <h5>${product.price}</h5>
+                            <CartContext.Consumer>
+                                {
+                                    ({addToCart}) => (
+                                        <Button type="primary" ghost onClick={() => {
+                                            if(_.isEmpty(this.context.user)){
+                                                alert("Please login before add to cart!!!")
+                                            } else {
+                                                addToCart(product)
+                                            }}}>
+                                            ADD TO CART
+                                        </Button> 
+                                    )
+                                }
+                            </CartContext.Consumer>
                             
-                            </div>
-
-                        </div>
-
-                        <div class="item2">
-                            <h1 class="font-al title is-3">{product.title}</h1>
-                            <div class="row-menu">
-                                <h3 class="subtitle is-6">DETAILS</h3>
                             
-                            </div>
-                            <p class="font-al">{product.discription}</p>
-                            <div class="button-buy">
-                                <button class="btn fourth">ADD TO CART</button>
-                            </div> 
-                        </div> 
-                    </div>
+                        </Grid>
+                    </Grid>
+                    
                 </Grid>
                 <Grid item xs={12} style={{marginTop: "43px"}}>
                     <Footers />
@@ -62,4 +74,5 @@ class ProductDetail extends Component {
     }
 }
 
+ProductDetail.contextType = UserContext;
 export default ProductDetail;

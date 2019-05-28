@@ -60,7 +60,7 @@ class CartDetail extends Component {
                 <Grid item xs={12}>
                     <NavbarSmall />
                 </Grid>
-                <Grid item xs={12} style={{marginTop: "80px"}}>
+                <Grid item xs={12} style={{margin: "120px auto 0", maxWidth: "70vw"}}>
                     <CartContext.Consumer>
                         {
                             ({cartItems}) => (
