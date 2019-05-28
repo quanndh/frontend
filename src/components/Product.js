@@ -6,6 +6,13 @@ import { UserContext } from "../contexts/User";
 import _ from "lodash";
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCart';
 
+const createStyle = (imageUrl) => ({
+    background: `url(${imageUrl})`,
+    backgroundSize: "contain",
+    backgroundRepeat: "no-repeat",
+    backgroundColor: `#FFFFFF`,
+});
+
 
 class Product extends Component {
     render() {
@@ -13,7 +20,7 @@ class Product extends Component {
     return (
         <Grid item xs={12} md={6} lg={3}>
 
-            <div class="container" style={{background: `url(${product.imageUrl})`, backgroundSize: "contain", backgroundRepeat: "no-repeat"}}>
+            <div class="container" style={createStyle(product.imageUrl)}>
                 <div class="overlay">
                     
                     <div class = "items"></div>

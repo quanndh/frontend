@@ -25,8 +25,8 @@ class Filter extends Component {
         const { category, price } = this.props;
         return (
             
-            <Grid container style={{height: "500px", width: "90%", marginLeft: "14px"}}>
-              <Grid item xs={12} style={{display: "flex", justifyContent: "center" }}>
+            <Grid container style={{height: "350px", width: "90%", marginLeft: "14px"}}>
+              <Grid item xs={12} style={{display: "flex", justifyContent: "flex-start" }}>
                  <Tabs style={{fontSize: "28px", height: "220px"}} defaultActiveKey={category} onChange={this.handleChange} tabPosition="right" size="large">
                     <TabPane tab="All" key="all" >
                      

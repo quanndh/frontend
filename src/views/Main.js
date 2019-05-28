@@ -8,6 +8,14 @@ import Filter from '../components/Filter';
 import {KeyboardArrowLeft, KeyboardArrowRight} from '@material-ui/icons';
 import AdsBanner from '../components/AdsBanner';
 import _ from "lodash";
+import { css } from '@emotion/core';
+import { ClipLoader } from 'react-spinners';
+
+const override = css`
+    display: block;
+    margin: 20px auto;
+    border-color: red;
+`;
 
 class Main extends Component {
     constructor(props){
@@ -19,6 +27,7 @@ class Main extends Component {
             price: [200, 1000],
             page: 1,
             nPage: "",
+            loading: false
         }
         this.next = this.next.bind(this);
         this.previous = this.previous.bind(this);
@@ -61,12 +70,18 @@ class Main extends Component {
 
     componentDidUpdate(prevProps, prevState){  
         if(this.state.category === prevState.category && !_.isEqual(this.state.price, prevState.price)) {
+            this.setState({
+                products: []
+            })
             axios.get("https://xcommerce-server.herokuapp.com/api/products/filter/?price=" + this.state.price[0] + "&price2=" + this.state.price[1] +  "&category=" + this.state.category + "&page=" + this.state.page)
             .then(data => {
                 this.setState({products: data.data.data, nPage: data.data.nPages});
             })
             .catch(err => console.log(err))
         } else if(this.state.category !== prevState.category && _.isEqual(this.state.price, prevState.price)) {
+            this.setState({
+                products: []
+            })
             console.log(this.state.category)
             axios.get("https://xcommerce-server.herokuapp.com/api/products/filter/?price=" + this.state.price[0] + "&price2=" + this.state.price[1] + "&category=" + this.state.category + "&page=" + this.state.page)
             .then(data => {
@@ -76,7 +91,9 @@ class Main extends Component {
         }    
         
         if(this.state.page !== prevState.page){
-            console.log("page" + this.state.page);
+            this.setState({
+                products: []
+            })
             console.log(prevState.price)
             axios.get("https://xcommerce-server.herokuapp.com/api/products/?page=" + this.state.page)
             .then(data => this.setState({products: data.data.data, nPage: data.data.nPages}))
@@ -87,19 +104,35 @@ class Main extends Component {
 
     render() {
         const { products, search, category, price, page, nPages } = this.state;
-        const displayProducts =  products ? products.filter(product => product.title.toLowerCase().includes(search)).map(product => 
+        console.log("Checking ...");
+        console.log(products);
+        
+        products.forEach(product => {
+            if (!product.title) {
+                console.log(product);
+            }
+        })
+        const displayProducts =  !_.isEmpty(products) ? products.filter(product => product.title.toLowerCase().includes(search)).map(product => 
                 <Product product={product} key={product._id}/>
-        ) : "Loading..." ;
+        ) : (<div className='sweet-loading'>
+                <ClipLoader
+                css={override}
+                sizeUnit={"px"}
+                size={70}
+                color={'#000'}
+                loading={true}
+                />
+            </div> ) ;
         return (
             <Grid container>
                 <Grid item xs={12} style={{marginBottom: "40px"}}>
                     <Navbar onClick={this.clickSearch}  onChange={this.searchChange} />
                 </Grid>
-                <Grid item xs={12}> <AdsBanner /></Grid>
-                <Grid item xs={12} md={3}>
+                <Grid item xs={12} className="bg"> <AdsBanner /></Grid>
+                <Grid item xs={12} md={3} className="bg">
                     <Filter onChange={this.changeCategory} category={category} price={price} changePrice={this.changePrice}/>
                 </Grid>
-                <Grid id="Product" item xs={12} md={9} style={{marginBottom: "40px", width:"99%"}}>
+                <Grid className="bg" id="Product" item xs={12} md={9} style={{marginBottom: "40px", width:"99%"}}>
                     <Grid container spacing={32}>
                         {displayProducts}
                     </Grid>
