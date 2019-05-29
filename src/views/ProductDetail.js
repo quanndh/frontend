@@ -92,7 +92,7 @@ class ProductDetail extends Component {
                 </Grid>
 
                 <Grid item xs={12} style={{margin: "0 auto", maxWidth: "70vw"}}>
-                    <h5>Product you may want to see</h5>
+                    <h5>Product you may want to see:</h5>
                     <Grid container>
                         {recommend}
                     </Grid>
