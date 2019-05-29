@@ -1,9 +1,9 @@
 @import '~antd/dist/antd.css';
 
-body, html {
-  padding: 0;
-  margin: 0;
-}
+html{ height:100%; }
+body{ min-height:100%; padding:0; margin:0; position:relative}
+
+
 
 .navbar{
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url("https://hdqwalls.com/download/smoking-beard-man-1920x1080.jpg");
@@ -46,12 +46,15 @@ body, html {
 
 input.error {
   border-color: red;
+  outline-color: red;
 }
 
 .input-feedback {
   color: red;
-  margin-top: .25rem;
-  text-align: right
+  margin-top: -21px;
+  text-align: left;
+  width: 75%;
+  margin-bottom: 20px;
 }
 
 .container {
@@ -226,8 +229,9 @@ a{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 270px
+  height: 700px
 }
 .mdl-textfield--expandable .mdl-button--icon{
   top: 22px !important;
 }
+

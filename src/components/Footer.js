@@ -3,7 +3,7 @@ import { Footer, FooterSection, FooterDropDownSection, FooterLinkList} from 'rea
 class Footers extends Component {
     render() {
         return (
-            <Footer size="mega">
+            <Footer className="footer" size="mega">
                 <FooterSection type="middle">
                     <FooterDropDownSection title="Features">
                         <FooterLinkList >

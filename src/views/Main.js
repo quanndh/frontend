@@ -9,7 +9,7 @@ import {KeyboardArrowLeft, KeyboardArrowRight} from '@material-ui/icons';
 import AdsBanner from '../components/AdsBanner';
 import _ from "lodash";
 import { css } from '@emotion/core';
-import { ClipLoader } from 'react-spinners';
+import { PulseLoader } from 'react-spinners';
 
 const override = css`
     display: block;
@@ -24,7 +24,7 @@ class Main extends Component {
             products: [],
             search: "",
             category: "all",
-            price: [200, 1000],
+            price: [5.00, 40.00],
             page: 1,
             nPage: "",
             loading: false
@@ -63,6 +63,7 @@ class Main extends Component {
     }
 
     componentDidMount(){
+        window.scrollTo(0,0);
         axios.get("https://xcommerce-server.herokuapp.com/api/products/?page=" + this.state.page )
         .then(data => this.setState({products: data.data.data, nPages: data.data.nPages}))
         .catch(err => console.log(err))
@@ -104,21 +105,14 @@ class Main extends Component {
 
     render() {
         const { products, search, category, price, page, nPages } = this.state;
-        console.log("Checking ...");
-        console.log(products);
-        
-        products.forEach(product => {
-            if (!product.title) {
-                console.log(product);
-            }
-        })
+    
         const displayProducts =  !_.isEmpty(products) ? products.filter(product => product.title.toLowerCase().includes(search)).map(product => 
                 <Product product={product} key={product._id}/>
         ) : (<div className='sweet-loading'>
-                <ClipLoader
+                <PulseLoader
                 css={override}
                 sizeUnit={"px"}
-                size={70}
+                size={40}
                 color={'#000'}
                 loading={true}
                 />
@@ -132,8 +126,8 @@ class Main extends Component {
                 <Grid item xs={12} md={3} className="bg">
                     <Filter onChange={this.changeCategory} category={category} price={price} changePrice={this.changePrice}/>
                 </Grid>
-                <Grid className="bg" id="Product" item xs={12} md={9} style={{marginBottom: "40px", width:"99%"}}>
-                    <Grid container spacing={32}>
+                <Grid className="bg" id="Product" item xs={12} md={9} style={{marginBottom: "40px", width:"99%", minHeight: "700px"}}>
+                    <Grid container spacing={32} style={{minHeight: "700px"}}>
                         {displayProducts}
                     </Grid>
                     <Grid item xs={12} style={{textAlign: "center", marginTop: "32px"}}>

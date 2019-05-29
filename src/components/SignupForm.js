@@ -6,8 +6,7 @@ import * as Yup from 'yup';
 import axios from "axios";
 import { css } from '@emotion/core';
 // First way to import
-import { ClipLoader } from 'react-spinners';
-import ReCAPTCHA from "react-google-recaptcha";
+import { PulseLoader } from 'react-spinners';
 
 const override = css`
     display: block;
@@ -29,10 +28,6 @@ class SignupForm extends Component {
         this.setState({
             loading: true
         })
-    }
-
-    handleCaptcha = (value) => {
-        console.log(value);
     }
     
     render() {
@@ -66,7 +61,7 @@ class SignupForm extends Component {
                         .min(6, "Password must be more than 6 characters")
                         .required('Password is required'),
                     username: Yup.string()
-                        .required("Username is required")
+                        .required("Username is required"),
                 })}
             >
                 {props => {
@@ -80,7 +75,7 @@ class SignupForm extends Component {
                     } = props;
                     return (
                         <form onSubmit={handleSubmit}>
-                            <div style={{display: "flex", justifyContent: "center"}}>
+                            <div style={{display: "flex", justifyContent: "center", height: "700px"}}>
                                 <div style={{display: "flex", "flexDirection" : "column", width: "40%", alignItems: "center",  padding: "16px"}}>
                                     <h3>New to ShopCANA ? SIGN UP</h3>
                                     <Input
@@ -141,22 +136,21 @@ class SignupForm extends Component {
                                         <div className="input-feedback">{errors.username}</div>
                                     )}
                                     
-                                    <h4>Already have an account, <Link to="/login" style={{textDecoration: "none"}}>Login</Link></h4>
-
-                                    <Button type="submit" onClick={this.handleSignUp} variant="outlined" color="inherit" style={{width: "120px", height: "40px", fontSize:"18px"}} >
+                                    <Button type="submit" 
+                                    onClick={this.handleSignUp} 
+                                    variant="outlined" 
+                                    color="inherit" 
+                                    style={{width: "120px", height: "40px", fontSize:"18px"}} >
                                         Sign up
                                     </Button>
-
-                                    <ReCAPTCHA
-                                        sitekey="6LeNA6YUAAAAAD6OWMq5Reoaa4501J0wjnttDN6x"
-                                        onChange={this.handleCaptcha}
-                                    />
+                                    
+                                    <h4>Already have an account, <Link to="/login" style={{textDecoration: "none"}}>Login</Link></h4>
                                     
                                     <div className='sweet-loading'>
-                                        <ClipLoader
+                                        <PulseLoader
                                         css={override}
                                         sizeUnit={"px"}
-                                        size={70}
+                                        size={40}
                                         color={'#000'}
                                         loading={this.state.loading}
                                         />

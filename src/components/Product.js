@@ -30,7 +30,7 @@ class Product extends Component {
                         <hr/>
                     </div>
                     <div class = "items price">
-                        <p class="new">{product.price}</p>
+                        <p class="new">${product.price}</p>
                     </div>
                     </Link>
                     <CartContext.Consumer>

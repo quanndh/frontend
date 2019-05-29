@@ -16,6 +16,7 @@ class ProductDetail extends Component {
         }
     }
     componentDidMount() {
+        window.scrollTo(0,0);
         axios.get( `https://xcommerce-server.herokuapp.com/api/products/${this.props.match.params.productid}`)
             .then(data => {
                 this.setState({
@@ -34,8 +35,8 @@ class ProductDetail extends Component {
                 </Grid>
                 <Grid item xs={12} style={{margin: "120px auto 0", maxWidth: "70vw"}}>
                     <Grid container style={{ display: "flex", justifyContent: "center"}}>
-                        <Grid item xs={6}>
-                            <img src={product.imageUrl} alt=""/>
+                        <Grid item xs={6} style={{width: "70%", height: "100%"}}>
+                            <img src={product.imageUrl} alt="" style={{width: "55%", height: "100%"}}/>
                         </Grid>
                         <Grid item xs={6}>
                             <h1>{product.title}</h1>

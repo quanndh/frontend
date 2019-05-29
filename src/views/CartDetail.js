@@ -17,6 +17,7 @@ class CartDetail extends Component {
         
     }
     componentDidMount(){
+        window.scrollTo(0,0);
         this.setState({
             items: this.context.cartItems
         })
