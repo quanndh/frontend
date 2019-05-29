@@ -58,7 +58,7 @@ class ProductDetail extends Component {
         )) : "As"
         return (
             <Grid container spacing={16} >
-                <Grid item xs={12} >
+                <Grid item xs={12}>
                     <NavbarSmall />
                 </Grid>
                 <Grid item xs={12} style={{margin: "120px auto 0", maxWidth: "70vw", borderBottom: "2px solid black"}}>
