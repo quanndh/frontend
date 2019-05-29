@@ -228,4 +228,6 @@ a{
   align-items: center;
   height: 270px
 }
-
+.mdl-textfield--expandable .mdl-button--icon{
+  top: 22px !important;
+}

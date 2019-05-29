@@ -7,6 +7,7 @@ import axios from "axios";
 import { css } from '@emotion/core';
 // First way to import
 import { ClipLoader } from 'react-spinners';
+import ReCAPTCHA from "react-google-recaptcha";
 
 const override = css`
     display: block;
@@ -28,6 +29,10 @@ class SignupForm extends Component {
         this.setState({
             loading: true
         })
+    }
+
+    handleCaptcha = (value) => {
+        console.log(value);
     }
     
     render() {
@@ -141,6 +146,11 @@ class SignupForm extends Component {
                                     <Button type="submit" onClick={this.handleSignUp} variant="outlined" color="inherit" style={{width: "120px", height: "40px", fontSize:"18px"}} >
                                         Sign up
                                     </Button>
+
+                                    <ReCAPTCHA
+                                        sitekey="6LeNA6YUAAAAAD6OWMq5Reoaa4501J0wjnttDN6x"
+                                        onChange={this.handleCaptcha}
+                                    />
                                     
                                     <div className='sweet-loading'>
                                         <ClipLoader
