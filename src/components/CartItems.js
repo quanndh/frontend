@@ -32,7 +32,7 @@ class CartItems extends Component {
                     {uniqItems.length !== 0 ? uniqItems.map(item => (
                         <TableRow key={item._id}>
                             <TableCell component="th" scope="row"  style={{fontSize: "22px"}}>
-                                <img src={item.imageUrl} style={{width: "80px", height:"160px", paddingRight:"10px"}} alt=""/>
+                                <img src={item.imageUrl} style={{width: "120px", height:"160px", paddingRight:"10px"}} alt=""/>
                                 {item.title}
                             </TableCell>
                             <CartContext.Consumer>

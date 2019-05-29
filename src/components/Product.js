@@ -5,6 +5,8 @@ import { CartContext } from "../contexts/Cart";
 import { UserContext } from "../contexts/User";
 import _ from "lodash";
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCart';
+import { Modal } from 'antd';
+
 
 const createStyle = (imageUrl) => ({
     background: `url(${imageUrl})`,
@@ -13,10 +15,19 @@ const createStyle = (imageUrl) => ({
     backgroundColor: `#FFFFFF`,
 });
 
+function warning() {
+    Modal.warning({
+      title: 'Warning',
+      content: 'Please login before add to cart.',
+      centered: true
+    });
+  }
 
 class Product extends Component {
+
     render() {
     const { product } = this.props;
+    
     return (
         <Grid item xs={12} md={6} lg={3}>
 
@@ -38,7 +49,7 @@ class Product extends Component {
                         ({addToCart}) => (
                             <div class="items cart" onClick={() => {
                                 if(_.isEmpty(this.context.user)){
-                                    alert("Please login before add to cart!!!")
+                                    warning();
                                 } else {
                                     addToCart(product)
                                 }

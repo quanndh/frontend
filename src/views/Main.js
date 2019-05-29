@@ -27,7 +27,7 @@ class Main extends Component {
             price: [5.00, 40.00],
             page: 1,
             nPage: "",
-            loading: false
+            loading: false,
         }
         this.next = this.next.bind(this);
         this.previous = this.previous.bind(this);
@@ -107,7 +107,7 @@ class Main extends Component {
         const { products, search, category, price, page, nPages } = this.state;
     
         const displayProducts =  !_.isEmpty(products) ? products.filter(product => product.title.toLowerCase().includes(search)).map(product => 
-                <Product product={product} key={product._id}/>
+                <Product product={product} key={product._id} handleWarning={this.handleWarning}/>
         ) : (<div className='sweet-loading'>
                 <PulseLoader
                 css={override}
@@ -119,6 +119,7 @@ class Main extends Component {
             </div> ) ;
         return (
             <Grid container>
+                
                 <Grid item xs={12} style={{marginBottom: "40px"}}>
                     <Navbar onClick={this.clickSearch}  onChange={this.searchChange} />
                 </Grid>
@@ -150,7 +151,7 @@ class Main extends Component {
                 <Grid item xs={12}>
                     <Footers className=""/>
                 </Grid>
-
+                
             </Grid>
 
         );

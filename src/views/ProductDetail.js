@@ -7,6 +7,15 @@ import {CartContext} from "../contexts/Cart";
 import _ from "lodash";
 import {Button} from "antd";
 import { UserContext } from '../contexts/User';
+import { Modal } from 'antd';
+
+function warning() {
+    Modal.warning({
+      title: 'Warning',
+      content: 'Please login before add to cart.',
+      centered: true
+    });
+  }
 
 class ProductDetail extends Component {
     constructor(props){
@@ -50,7 +59,7 @@ class ProductDetail extends Component {
                                     ({addToCart}) => (
                                         <Button type="primary" ghost onClick={() => {
                                             if(_.isEmpty(this.context.user)){
-                                                alert("Please login before add to cart!!!")
+                                               warning();
                                             } else {
                                                 addToCart(product)
                                             }}}>

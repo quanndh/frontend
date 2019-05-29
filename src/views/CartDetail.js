@@ -6,6 +6,17 @@ import CartItems from '../components/CartItems';
 import {Grid} from "@material-ui/core";
 import PaypalExpressBtn from 'react-paypal-express-checkout';
 import axios from 'axios';
+import { Modal } from 'antd';
+import _ from "lodash";
+
+function warning() {
+    Modal.warning({
+      title: 'Warning',
+      content: 'No product in your cart yet.',
+      centered: true
+    });
+  }
+
 
 class CartDetail extends Component {
     constructor(){
@@ -44,7 +55,7 @@ class CartDetail extends Component {
         }
  
         const onError = (err) => {
-           
+            warning();
             console.log("Error!", err);
            
         }
@@ -73,10 +84,39 @@ class CartDetail extends Component {
                 <Grid item xs={12} style={{display: "flex", justifyContent: "center", marginTop: "36px"}}>
                     <CartContext.Consumer>
                     {
-                        ({totalPrice}) => (
-                            <PaypalExpressBtn env={env} client={client} currency={currency} total={totalPrice()} onError={onError} onSuccess={onSuccess} onCancel={onCancel} />
-                        )
-                    }
+                        ({totalPrice, cartItems}) => 
+                            !_.isEmpty(cartItems) ? (
+                                    <PaypalExpressBtn 
+                                    env={env} 
+                                    client={client} 
+                                    currency={currency} 
+                                    total={totalPrice()} 
+                                    onError={onError}
+                                    onCancel={onCancel}
+                                    onSuccess={onSuccess} 
+                            
+                                    style={{
+                                        size: 'large',
+                                        color: 'black',
+                                        shape: 'rect',
+                                        label: 'buynow',
+                                        tagline: 'true'
+                                    }}
+                                    />
+                            )
+                            : (
+                                <PaypalExpressBtn 
+                                    style={{
+                                        size: 'large',
+                                        color: 'black',
+                                        shape: 'rect',
+                                        label: 'buynow',
+                                        tagline: 'true'
+                                    }}
+                                />
+                            )
+                        }
+                    
                     </CartContext.Consumer>
                 </Grid>
                 <Grid item xs={12} style={{marginTop: "40px"}}>
