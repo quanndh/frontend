@@ -28,6 +28,9 @@ class ProductDetail extends Component {
 
     render() {
         const { product } = this.state;
+        const discription = product.discription ? product.discription : "";
+        console.log(discription);
+        let discriptionText = discription.split("/");
         return (
             <Grid container spacing={16} >
                 <Grid item xs={12} >
@@ -40,10 +43,7 @@ class ProductDetail extends Component {
                         </Grid>
                         <Grid item xs={6}>
                             <h1>{product.title}</h1>
-                            <br/>
-                            <h3>Details</h3>
-                            <br/>
-                            <h5>{product.discription}</h5>
+                            {discriptionText.map(text => <h5>{text}</h5>)}
                             <h5>${product.price}</h5>
                             <CartContext.Consumer>
                                 {
