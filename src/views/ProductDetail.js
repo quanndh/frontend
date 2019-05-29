@@ -55,7 +55,7 @@ class ProductDetail extends Component {
                     <img className="small-img" src={product.imageUrl} alt="" style={{ padding: "4px",width: "120px", height: "150px"}}/>
                 </a>
             </Grid>
-        )) : "As"
+        )) : ""
         return (
             <Grid container spacing={16} >
                 <Grid item xs={12}>
