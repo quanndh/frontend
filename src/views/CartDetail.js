@@ -32,6 +32,9 @@ class CartDetail extends Component {
         this.setState({
             items: this.context.cartItems
         })
+        if(_.isEmpty(this.context.cartItems)){
+            warning();
+        }
     }
     render() {
         const onSuccess = (payment) => {
