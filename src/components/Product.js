@@ -13,6 +13,7 @@ const createStyle = (imageUrl) => ({
     backgroundSize: "contain",
     backgroundRepeat: "no-repeat",
     backgroundColor: `#FFFFFF`,
+    backgroundPosition: "center"
 });
 
 function warning() {
@@ -35,7 +36,7 @@ class Product extends Component {
                 <div class="overlay">
                     
                     <div class = "items"></div>
-                    <Link to={`/products/${product._id}`} style={{textDecoration: "none", textDecorationColor: "none"}}>
+                    <Link to={`/products/${product._id}`} style={{textDecoration: "none", textDecorationColor: "none", padding: "20"}}>
                     <div class = "items head">
                         <p>{product.title}</p>
                         <hr/>
