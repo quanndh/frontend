@@ -8,14 +8,9 @@ import Filter from '../components/Filter';
 import {KeyboardArrowLeft, KeyboardArrowRight} from '@material-ui/icons';
 import AdsBanner from '../components/AdsBanner';
 import _ from "lodash";
-import { css } from '@emotion/core';
 import { PulseLoader } from 'react-spinners';
+import { Empty } from 'antd';
 
-const override = css`
-    display: block;
-    margin: 20px auto;
-    border-color: red;
-`;
 
 class Main extends Component {
     constructor(props){
@@ -63,60 +58,59 @@ class Main extends Component {
     }
 
     componentDidMount(){
+        this.setState({
+            loading: true
+        })
         window.scrollTo(0,0);
         axios.get("https://xcommerce-server.herokuapp.com/api/products/?page=" + this.state.page )
-        .then(data => this.setState({products: data.data.data, nPages: data.data.nPages}))
+        .then(data => this.setState({products: data.data.data, nPages: data.data.nPages, loading: false}))
         .catch(err => console.log(err))
     }
 
     componentDidUpdate(prevProps, prevState){  
         if(this.state.category === prevState.category && !_.isEqual(this.state.price, prevState.price)) {
             this.setState({
-                products: []
+                product: [],
+                loading: true
             })
             axios.get("https://xcommerce-server.herokuapp.com/api/products/filter/?price=" + this.state.price[0] + "&price2=" + this.state.price[1] +  "&category=" + this.state.category + "&page=" + this.state.page)
             .then(data => {
-                this.setState({products: data.data.data, nPage: data.data.nPages});
+                this.setState({products: data.data.data, nPage: data.data.nPages, loading: false});
             })
             .catch(err => console.log(err))
         } else if(this.state.category !== prevState.category && _.isEqual(this.state.price, prevState.price)) {
             this.setState({
-                products: []
+                product: [],
+                loading: true
             })
             console.log(this.state.category)
             axios.get("https://xcommerce-server.herokuapp.com/api/products/filter/?price=" + this.state.price[0] + "&price2=" + this.state.price[1] + "&category=" + this.state.category + "&page=" + this.state.page)
             .then(data => {
-                this.setState({products: data.data.data, nPage: data.data.nPages});
+                this.setState({products: data.data.data, nPage: data.data.nPages, loading: false});
             })
             .catch(err => console.log(err))
         }    
         
         if(this.state.page !== prevState.page){
             this.setState({
-                products: []
+                product: [],
+                loading: true
             })
             console.log(prevState.price)
             axios.get("https://xcommerce-server.herokuapp.com/api/products/?page=" + this.state.page)
-            .then(data => this.setState({products: data.data.data, nPage: data.data.nPages}))
+            .then(data => this.setState({products: data.data.data, nPage: data.data.nPages, loading: false}))
             .catch(err => console.log(err))
         }
 
     }
 
     render() {
-        const { products, search, category, price, page, nPages } = this.state;
+        const { products, search, category, price, page, nPages, loading } = this.state;
     
         const displayProducts =  !_.isEmpty(products) ? products.filter(product => product.title.toLowerCase().includes(search)).map(product => 
                 <Product product={product} key={product._id} handleWarning={this.handleWarning}/>
-        ) : (<div className='sweet-loading'>
-                <PulseLoader
-                css={override}
-                sizeUnit={"px"}
-                size={40}
-                color={'#000'}
-                loading={true}
-                />
-            </div> ) ;
+        ) : ( <Empty className='sweet-loading' description="No product found!" />) ;
+        console.log(displayProducts);
         return (
             <Grid container>
                 
@@ -129,7 +123,18 @@ class Main extends Component {
                 </Grid>
                 <Grid className="bg" id="Product" item xs={12} md={9} style={{marginBottom: "40px", width:"99%", minHeight: "700px"}}>
                     <Grid container spacing={32} style={{minHeight: "700px"}}>
-                        {displayProducts}
+                        
+                        { loading !== true && displayProducts}
+
+                        { loading === true && (<div className='sweet-loading'>
+                                                <PulseLoader
+                                                sizeUnit={"px"}
+                                                size={40}
+                                                color={'#000'}
+                                                loading={loading}
+                                                />
+                                            </div> )}
+                                            
                     </Grid>
                     <Grid item xs={12} style={{textAlign: "center", marginTop: "32px"}}>
                         {
