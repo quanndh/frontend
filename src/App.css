@@ -1,9 +1,44 @@
 @import '~antd/dist/antd.css';
 
-html{ height:100%; }
-body{ min-height:100%; padding:0; margin:0; position:relative}
+html{ height:100%;width: 100%; position: relative}
+body{ min-height:100%; width: 100%; padding:0; margin:0;}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+.App {
+  height: 100%;
+  width: 100%;
+}
+
+#wrapper {
+  min-height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+#wrapper > #bodyWrapper {
+  padding-top: 130px;
+  padding-bottom: 200px;
+  width: 100%;
+}
 
 
+
+
+.footer{
+  /* position: fixed;
+  bottom: 0;
+  width: 100%;
+  clear: both; */
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: auto;
+  width: 100%;
+}
 
 .navbar{
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url("https://hdqwalls.com/download/smoking-beard-man-1920x1080.jpg");
@@ -58,8 +93,8 @@ input.error {
 }
 
 .container {
-  width: 300px;
-  height: 400px;
+  width: 90%;
+  height: 100%;
   
   position: relative;
   top:0; right: 0; left: 0; bottom: 0;
@@ -67,6 +102,7 @@ input.error {
   background-color: black;
   background-size: cover;
   cursor: pointer;
+
   
   -webkit-box-shadow: 0 0 5px #FFF;
         box-shadow: 0 0 5px #000;
@@ -177,7 +213,7 @@ a{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 2% 0.8% 4%;  
+  margin: -5% 0.8% 4%;  
   padding: 1.25em 2em;
   border-radius: 5px;
  
@@ -228,8 +264,8 @@ a{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 700px;
-
+  /* height: 700px; */
+  height: 80px;
 }
 
 

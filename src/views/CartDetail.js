@@ -3,7 +3,6 @@ import NavbarSmall from '../components/NavbarSmall';
 import Footers from '../components/Footer';
 import { CartContext } from "../contexts/Cart";
 import CartItems from '../components/CartItems';
-import {Grid} from "@material-ui/core";
 import PaypalExpressBtn from 'react-paypal-express-checkout';
 import axios from 'axios';
 import { Modal } from 'antd';
@@ -71,62 +70,80 @@ class CartDetail extends Component {
             production: 'EOUoXQa7PM4vvB4bKF5keZ52jhh1GyG82ALgQ2nY3B6ts-kzaqZKqkm7x3SNJYLPFKVORAGPh73TGFgX',
         }
         return (
-            <Grid container spacing={16}>
-                <Grid item xs={12}>
-                    <NavbarSmall />
-                </Grid>
-                <Grid item xs={12} style={{margin: "120px auto 0", maxWidth: "70vw"}}>
-                    <CartContext.Consumer>
-                        {
-                            ({cartItems}) => (
-                                <CartItems items={cartItems}/>
-                            )
-                        }
-                    </CartContext.Consumer>
-                </Grid>
-                <Grid item xs={12} style={{display: "flex", justifyContent: "center", marginTop: "36px"}}>
-                    <CartContext.Consumer>
-                    {
-                        ({totalPrice, cartItems}) => 
-                            !_.isEmpty(cartItems) ? (
+            <div id="wrapper">
+                <NavbarSmall />
+                <div id="bodyWrapper">
+                    <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        <CartContext.Consumer>
+                            {
+                                ({cartItems}) => (
+                                    <CartItems items={cartItems}/>
+                                )
+                            }
+                        </CartContext.Consumer>
+                    </div>
+                        
+                    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: "40px"}}>
+                        <CartContext.Consumer>
+                            {
+                                ({totalPrice, cartItems}) => 
+                                    !_.isEmpty(cartItems) ? (
+                                            <PaypalExpressBtn 
+                                            env={env} 
+                                            client={client} 
+                                            currency={currency} 
+                                            total={totalPrice()} 
+                                            onError={onError}
+                                            onCancel={onCancel}
+                                            onSuccess={onSuccess} 
+                                    
+                                            style={{
+                                                size: 'large',
+                                                color: 'black',
+                                                shape: 'rect',
+                                                label: 'buynow',
+                                                tagline: 'true'
+                                            }}
+                                            />
+                                    )
+                                    : (
                                     <PaypalExpressBtn 
-                                    env={env} 
-                                    client={client} 
-                                    currency={currency} 
-                                    total={totalPrice()} 
-                                    onError={onError}
-                                    onCancel={onCancel}
-                                    onSuccess={onSuccess} 
-                            
-                                    style={{
-                                        size: 'large',
-                                        color: 'black',
-                                        shape: 'rect',
-                                        label: 'buynow',
-                                        tagline: 'true'
-                                    }}
+                                        style={{
+                                            size: 'large',
+                                            color: 'black',
+                                            shape: 'rect',
+                                            label: 'buynow',
+                                            tagline: 'true'
+                                        }}
                                     />
-                            )
-                            : (
-                                <PaypalExpressBtn 
-                                    style={{
-                                        size: 'large',
-                                        color: 'black',
-                                        shape: 'rect',
-                                        label: 'buynow',
-                                        tagline: 'true'
-                                    }}
-                                />
-                            )
-                        }
-                    
-                    </CartContext.Consumer>
-                </Grid>
-                <Grid item xs={12} style={{marginTop: "40px"}}>
-                    <Footers />
-                </Grid>
+                                )
+                            }
+                        
+                        </CartContext.Consumer>
+
+                    </div>
                 
-            </Grid>
+                    
+                </div>
+                <Footers />
+            </div>
+
+             /* // <Grid container spacing={16}>
+            //     <Grid item xs={12}>
+            //         <NavbarSmall />
+            //     </Grid>
+            //     <Grid item xs={12} style={{margin: "120px auto 0", maxWidth: "70vw"}}>
+                    
+            //     </Grid>
+            //     <Grid item xs={12} style={{display: "flex", justifyContent: "center", marginTop: "36px"}}>
+                   
+            //     </Grid>
+            //     <Grid item xs={12} style={{marginTop: "40px"}}>
+            //         <Footers />
+            //     </Grid>
+                
+            // </Grid>  */
+            
         );
     }
 }

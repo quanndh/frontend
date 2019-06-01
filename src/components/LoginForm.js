@@ -70,7 +70,7 @@ class LoginForm extends Component {
                     } = props;
                     return (
                         <form onSubmit={handleSubmit}>
-                            <div style={{display: "flex", justifyContent: "center", height: "600px"}}>     
+                            <div style={{display: "flex", justifyContent: "center", minHeight: "70%"}}>     
                                 <div style={{display: "flex", "flexDirection" : "column", width: "40%", alignItems: "center",  padding: "16px"}}>
                                     <h3>Welcome to ShopCANA, please login</h3>
                                     <Input
@@ -123,16 +123,20 @@ class LoginForm extends Component {
                                     </Button>
                                     
                                     <h4>If you don't have an account yet, <Link to="/signup" style={{textDecoration: "none"}}>Sign Up</Link></h4>
+                                    {
+                                        this.state.loading ? (
+                                        <div className='sweet-loading'>
+                                            <PulseLoader
+                                            css={override}
+                                            sizeUnit={"px"}
+                                            size={40}
+                                            color={'#000'}
+                                            loading={this.state.loading}
+                                            />
+                                        </div>   
+                                        ) : null
+                                    }
                                     
-                                    <div className='sweet-loading'>
-                                        <PulseLoader
-                                        css={override}
-                                        sizeUnit={"px"}
-                                        size={40}
-                                        color={'#000'}
-                                        loading={this.state.loading}
-                                        />
-                                    </div>   
                                 </div> 
                                                            
                             </div>

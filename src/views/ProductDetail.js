@@ -74,16 +74,15 @@ class ProductDetail extends Component {
                 />
             </div> )
         return (
-            <Grid container spacing={16} >
-                <Grid item xs={12}>
-                    <NavbarSmall />
-                </Grid>
-                <Grid item xs={12} style={{margin: "120px auto 0", maxWidth: "70vw", borderBottom: "2px solid black"}}>
+            <div id="wrapper">
+                <NavbarSmall />
+                <div id="bodyWrapper" style={{paddingBottom: "400px"}}>
+
                     <Grid container style={{ display: "flex", justifyContent: "center"}}>
-                        <Grid item xs={6} style={{width: "70%", height: "100%"}}>
+                        <Grid item xs={6} style={{width: "70%", height: "100%",  display: "flex", justifyContent: "flex-end"}}>
                             <img src={product.imageUrl} alt="" style={{width: "55%", height: "100%"}}/>
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item xs={6} style={{paddingLeft: "5%"}}>
                             <h1>{product.title}</h1>
                             {discriptionText.map((text, index) => <h5 key={index}>{text}</h5>)}
                             <h5>${product.price}</h5>
@@ -92,7 +91,7 @@ class ProductDetail extends Component {
                                     ({addToCart}) => (
                                         <Button type="primary" ghost onClick={() => {
                                             if(_.isEmpty(this.context.user)){
-                                               warning();
+                                            warning();
                                             } else {
                                                 addToCart(product)
                                             }}}>
@@ -106,19 +105,71 @@ class ProductDetail extends Component {
                         </Grid>
                     </Grid>
                     
-                </Grid>
+                    <center>
+                        <hr style={{width: "70%"}}/>
+                    </center>
+                    
 
-                <Grid item xs={12} style={{margin: "0 auto", maxWidth: "70vw"}}>
-                    <h5>Product you may want to see:</h5>
-                    <Grid container>
-                        {recommend}
-                    </Grid>
-                </Grid>
+                    <div style={{display: "flex", justifyContent: "center", width: "70%", flexDirection: "column", paddingLeft: "15%"}}>
+                        
+                        <h5 >Product you may want to see:</h5>
+                        <Grid container style={{display: "flex", justifyContent: "center"}}>
+                            {recommend}
+                        </Grid> 
+                    </div>           
+                    
+                    
 
-                <Grid item xs={12} style={{marginTop: "43px"}}>
-                    <Footers />
-                </Grid>
-            </Grid>
+                </div>
+                <Footers />
+            </div>
+
+
+            // <Grid container spacing={16} >
+            //     <Grid item xs={12}>
+            //         <NavbarSmall />
+            //     </Grid>
+            //     <Grid item xs={12} style={{margin: "120px auto 0", maxWidth: "70vw", borderBottom: "2px solid black"}}>
+            //         <Grid container style={{ display: "flex", justifyContent: "center"}}>
+            //             <Grid item xs={6} style={{width: "70%", height: "100%"}}>
+            //                 <img src={product.imageUrl} alt="" style={{width: "55%", height: "100%"}}/>
+            //             </Grid>
+            //             <Grid item xs={6}>
+            //                 <h1>{product.title}</h1>
+            //                 {discriptionText.map((text, index) => <h5 key={index}>{text}</h5>)}
+            //                 <h5>${product.price}</h5>
+            //                 <CartContext.Consumer>
+            //                     {
+            //                         ({addToCart}) => (
+            //                             <Button type="primary" ghost onClick={() => {
+            //                                 if(_.isEmpty(this.context.user)){
+            //                                    warning();
+            //                                 } else {
+            //                                     addToCart(product)
+            //                                 }}}>
+            //                                 ADD TO CART
+            //                             </Button> 
+            //                         )
+            //                     }
+            //                 </CartContext.Consumer>
+                            
+                            
+            //             </Grid>
+            //         </Grid>
+                    
+            //     </Grid>
+
+            //     <Grid item xs={12} style={{margin: "0 auto", maxWidth: "70vw"}}>
+            //         <h5>Product you may want to see:</h5>
+            //         <Grid container>
+            //             {recommend}
+            //         </Grid>
+            //     </Grid>
+
+            //     <Grid item xs={12} style={{marginTop: "43px"}}>
+            //         <Footers />
+            //     </Grid>
+            // </Grid>
                 
             
         );

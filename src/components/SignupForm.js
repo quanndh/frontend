@@ -51,7 +51,7 @@ class SignupForm extends Component {
                     .catch(() =>  this.setState({
                         message: "Email is taken",
                         loading: false
-                    }))
+                    })) 
                 }}
                 validationSchema={Yup.object().shape({
                     email: Yup.string()

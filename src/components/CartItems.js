@@ -18,7 +18,7 @@ class CartItems extends Component {
         const uniqItems = _.uniq(items);
        
         return (
-            <Paper>
+            <Paper style={{width: "75vw"}}>
                 <Table style={{minHeight: "300px"}}>
                     <TableHead>
                         <TableRow>

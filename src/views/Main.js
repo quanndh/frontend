@@ -114,52 +114,100 @@ class Main extends Component {
             displayProducts = (<Empty className='sweet-loading' description="No product found!" />)
         }
         return (
-            <Grid container>
-                
-                <Grid item xs={12} style={{marginBottom: "40px"}}>
-                    <Navbar onClick={this.clickSearch}  onChange={this.searchChange} />
-                </Grid>
-                <Grid item xs={12} className="bg"> <AdsBanner /></Grid>
-                <Grid item xs={12} md={3} className="bg">
-                    <Filter onChange={this.changeCategory} category={category} price={price} changePrice={this.changePrice}/>
-                </Grid>
-                <Grid className="bg" id="Product" item xs={12} md={9} style={{marginBottom: "40px", width:"99%", minHeight: "700px"}}>
-                    <Grid container spacing={32} style={{minHeight: "700px"}}>
-                        
-                        { loading !== true && displayProducts}
+            <div>
 
-                        { loading === true && (<div className='sweet-loading'>
-                                                <PulseLoader
-                                                sizeUnit={"px"}
-                                                size={40}
-                                                color={'#000'}
-                                                loading={loading}
-                                                />
-                                            </div> )}
+            <Navbar onClick={this.clickSearch}  onChange={this.searchChange} />
+                <div id="wrapper">
+
+                <div id="bodyWrapper" style={{paddingBottom: "300px"}}>
+                    <AdsBanner style={{paddingTop: "-200px"}}/>
+                    <Grid container>
+                        <Grid item xs={12} md={3} className="bg">
+                            <Filter onChange={this.changeCategory} category={category} price={price} changePrice={this.changePrice}/>
+                        </Grid>
+                        <Grid className="bg" id="Product" item xs={12} md={9} style={{marginBottom: "40px", width:"99%", minHeight: "700px"}}>
+                            <Grid container spacing={32} style={{minHeight: "700px"}}>
+                                
+                                { loading !== true && displayProducts}
+
+                                { loading === true && (<div className='sweet-loading'>
+                                                        <PulseLoader
+                                                        sizeUnit={"px"}
+                                                        size={40}
+                                                        color={'#000'}
+                                                        loading={loading}
+                                                        />
+                                                    </div> )}
+                                                    
+                            </Grid>
+                            <Grid item xs={12} style={{textAlign: "center", marginTop: "32px"}}>
+                                {
+                                    page <= 1     
+                                        ?<KeyboardArrowLeft style={{height: "50px", width: "50px", cursor: "not-allow", color: "grey"}}/>
+                                        :<KeyboardArrowLeft  onClick={this.previous} style={{height: "50px", width: "50px", cursor: "pointer"}}/>
+                                }
+                                {page} / {nPages}
+                                {
+                                    page === nPages*1
+                                        ?<KeyboardArrowRight style={{height: "50px", width: "50px", cursor: "not-allow", color: "grey"}}/>
+                                        :<KeyboardArrowRight onClick={this.next} style={{height: "50px", width: "50px", cursor: "pointer"}}/>
+                                }
+                                
+                            </Grid>
+
+                        </Grid>
+                    </Grid>
+                   
+                </div>
+                <Footers />
+            </div>
+            </div>
+            // <Grid container>
+                
+            //     <Grid item xs={12} style={{marginBottom: "40px"}}>
+                   
+            //     </Grid>
+            //     <Grid item xs={12} className="bg"> <AdsBanner /></Grid>
+            //     <Grid item xs={12} md={3} className="bg">
+            //         <Filter onChange={this.changeCategory} category={category} price={price} changePrice={this.changePrice}/>
+            //     </Grid>
+            //     <Grid className="bg" id="Product" item xs={12} md={9} style={{marginBottom: "40px", width:"99%", minHeight: "700px"}}>
+            //         <Grid container spacing={32} style={{minHeight: "700px"}}>
+                        
+            //             { loading !== true && displayProducts}
+
+            //             { loading === true && (<div className='sweet-loading'>
+            //                                     <PulseLoader
+            //                                     sizeUnit={"px"}
+            //                                     size={40}
+            //                                     color={'#000'}
+            //                                     loading={loading}
+            //                                     />
+            //                                 </div> )}
                                             
-                    </Grid>
-                    <Grid item xs={12} style={{textAlign: "center", marginTop: "32px"}}>
-                        {
-                            page <= 1     
-                                ?<KeyboardArrowLeft style={{height: "50px", width: "50px", cursor: "not-allow", color: "grey"}}/>
-                                :<KeyboardArrowLeft  onClick={this.previous} style={{height: "50px", width: "50px", cursor: "pointer"}}/>
-                        }
-                        {page} / {nPages}
-                        {
-                            page === nPages*1
-                                ?<KeyboardArrowRight style={{height: "50px", width: "50px", cursor: "not-allow", color: "grey"}}/>
-                                :<KeyboardArrowRight onClick={this.next} style={{height: "50px", width: "50px", cursor: "pointer"}}/>
-                        }
+            //         </Grid>
+            //         <Grid item xs={12} style={{textAlign: "center", marginTop: "32px"}}>
+            //             {
+            //                 page <= 1     
+            //                     ?<KeyboardArrowLeft style={{height: "50px", width: "50px", cursor: "not-allow", color: "grey"}}/>
+            //                     :<KeyboardArrowLeft  onClick={this.previous} style={{height: "50px", width: "50px", cursor: "pointer"}}/>
+            //             }
+            //             {page} / {nPages}
+            //             {
+            //                 page === nPages*1
+            //                     ?<KeyboardArrowRight style={{height: "50px", width: "50px", cursor: "not-allow", color: "grey"}}/>
+            //                     :<KeyboardArrowRight onClick={this.next} style={{height: "50px", width: "50px", cursor: "pointer"}}/>
+            //             }
                         
-                    </Grid>
+            //         </Grid>
 
-                </Grid>
+            //     </Grid>
                 
-                <Grid item xs={12}>
-                    <Footers className=""/>
-                </Grid>
+            //     <Grid item xs={12}>
+            //         <Footers className=""/>
+            //     </Grid>
                 
-            </Grid>
+            // </Grid>
 
         );
     }
