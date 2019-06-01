@@ -107,10 +107,12 @@ class Main extends Component {
     render() {
         const { products, search, category, price, page, nPages, loading } = this.state;
     
-        const displayProducts =  !_.isEmpty(products) ? products.filter(product => product.title.toLowerCase().includes(search)).map(product => 
+        let displayProducts =  products.filter(product => product.title.toLowerCase().includes(search)).map(product => 
                 <Product product={product} key={product._id} handleWarning={this.handleWarning}/>
-        ) : ( <Empty className='sweet-loading' description="No product found!" />) ;
-        console.log(displayProducts);
+        ) 
+        if(_.isEmpty(displayProducts)){
+            displayProducts = (<Empty className='sweet-loading' description="No product found!" />)
+        }
         return (
             <Grid container>
                 

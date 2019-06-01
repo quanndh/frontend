@@ -231,12 +231,19 @@ a{
   height: 700px;
 
 }
-.mdl-textfield--expandable .mdl-button--icon{
-  top: 22px !important;
-}
+
 
 .small-img:hover{
   -webkit-box-shadow: 2px 4px 5px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 2px 4px 5px 0px rgba(0,0,0,0.75);
   box-shadow: 2px 4px 5px 0px rgba(0,0,0,0.75); 
 }
+
+.mdl-textfield--expandable .mdl-button--icon {
+  top: 1px !important;
+}
+
+.mdl-layout__header-row .mdl-navigation__link{
+  line-height: 0 !important;
+}
+
