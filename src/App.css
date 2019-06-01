@@ -93,6 +93,8 @@ input.error {
 }
 
 .container {
+  width: 90%;
+  height: 100%;
   border-radius: 3px;
   position: relative;
   top:0; right: 0; left: 0; bottom: 0;
@@ -122,7 +124,7 @@ input.error {
 }
 
 .items {
-  padding-left: 20px;
+  padding-left: 15px;
   letter-spacing: 3px;
 }
 
