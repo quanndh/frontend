@@ -176,7 +176,7 @@ a{
 .banner{
   display: flex;
   align-items: center;
-  
+  justify-content: space-between;
   margin: 2% 0.8% 4%;  
   padding: 1.25em 2em;
   border-radius: 5px;
@@ -207,7 +207,7 @@ a{
 .banner__cta{
   display: inline;
   padding: 10px 14px;
-  margin-left: 28%;
+  margin-left: 24.5%;
   border-radius: 2px;
   
   font-size: 1rem; 
