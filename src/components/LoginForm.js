@@ -43,7 +43,7 @@ class LoginForm extends Component {
                         this.setState({
                             loading: false
                         })
-                        window.location.href = "https://xcommerce-client.herokuapp.com";
+                        // window.location.href = "https://xcommerce-client.herokuapp.com";
                         
                     })
                     .catch(() => this.setState({

@@ -108,7 +108,7 @@ class ProductDetail extends Component {
                                     ({addToCart}) => (
                                         <Button type="primary" ghost onClick={() => {
                                             if(_.isEmpty(this.context.user)){
-                                            warning();
+                                                warning();
                                             } else {
                                                 addToCart(product)
                                             }}}>

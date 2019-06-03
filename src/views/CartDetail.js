@@ -38,7 +38,7 @@ class CartDetail extends Component {
     render() {
         const onSuccess = (payment) => {
             let items = this.state.items;
-            
+            console.log(payment)
             axios.post("https://xcommerce-server.herokuapp.com/api/order", {
                 buyerEmail: payment.email,
                 orderedItems: items,
@@ -46,7 +46,7 @@ class CartDetail extends Component {
             }, {
                 withCredentials: true
             })
-            .then(() => window.location.href = "https://xcommerce-client.herokuapp.com/")
+            .then(() =>  console.log(payment))
             .catch(err => console.error(err))
         }
  
@@ -73,7 +73,7 @@ class CartDetail extends Component {
             <div id="wrapper">
                 <NavbarSmall />
                 <div id="bodyWrapper">
-                    <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
+                    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginBottom: "120px"}}>
                         <CartContext.Consumer>
                             {
                                 ({cartItems}) => (

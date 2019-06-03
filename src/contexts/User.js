@@ -1,5 +1,6 @@
 import React , { Component } from "react";
 import axios from "axios";
+import _ from "lodash";
 
 const UserContext = React.createContext();
 
@@ -8,7 +9,8 @@ class UserProvider extends Component {
     constructor(){
         super();
         this.state = {
-            user: {}
+            user: {},
+            sale: {}
         }
         this.getInfo = this.getInfo.bind(this);
     }    
@@ -29,7 +31,7 @@ class UserProvider extends Component {
         return (
             <UserContext.Provider value={{
                 getInfo: this.getInfo,
-                user: this.state.user
+                user: this.state.user,
             }}>
                 {this.props.children}
             </UserContext.Provider>

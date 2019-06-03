@@ -43,7 +43,7 @@ class CartItems extends Component {
                                 }
                             </CartContext.Consumer>
                             <TableCell align="right" style={{fontSize: "22px"}}>{item.price}</TableCell>
-                            <TableCell align="right" style={{fontSize: "22px"}}>{item.price * item.qty}</TableCell>
+                            <TableCell align="right" style={{fontSize: "22px"}}>{(item.price * item.qty).toFixed(2)}</TableCell>
                         </TableRow>
                     )) : <TableRow>
                             <TableCell style={{fontSize: "24px"}} colSpan={4}>No product yet</TableCell>
@@ -56,8 +56,8 @@ class CartItems extends Component {
                              
                         <CartContext.Consumer>
                         {
-                            ({totalPrice}) => (
-                                <Typography style={{fontSize: "24px"}}>Total price: {totalPrice()}  </Typography>
+                            ({totalPrice}) => (          
+                                <Typography style={{fontSize: "24px"}}>Total price: {totalPrice}  </Typography>
                             )
                         }
                         </CartContext.Consumer>

@@ -11,11 +11,12 @@ import {UserProvider, UserContext} from './contexts/User';
 import _ from "lodash";
 
 class App extends Component {
-
-  componentDidMount(){
-    
+  constructor(){
+    super()
+    this.state = {
+      user: {}
+    }
   }
-  
   render(){
     
     return (
@@ -23,15 +24,27 @@ class App extends Component {
         <UserProvider>
           <UserContext.Consumer>
             {
-              ({getInfo, user}) => {_.isEmpty(user) ?  getInfo() : console.log(user.username)}
+              ({getInfo, user}) => {
+               _.isEmpty(user) ? getInfo() : console.log(user.email)
+              } 
             }
+            
           </UserContext.Consumer>
+          
           <Router>
             <div className="App">
 
-              <Route path="/" exact render={props => {
-                return <Main {...props}/>
-              }}></Route>
+              <UserContext.Consumer>
+              {
+                ({user}) => {
+                  return <Route path="/" exact render={props => {
+                          return <Main user={user} {...props}/>
+                        }}></Route>
+                } 
+              }
+              
+              </UserContext.Consumer>
+              
             
               <Route path="/products/:productid" exact render={props => {
                 return <ProductDetail  {...props}/>
