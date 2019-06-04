@@ -93,7 +93,7 @@ class ProductDetail extends Component {
         return (
             <div id="wrapper">
                 <NavbarSmall />
-                <div id="bodyWrapper" style={{paddingBottom: "400px"}}>
+                <div id="bodyWrapper">
 
                     <Grid container style={{ display: "flex", justifyContent: "center"}}>
                         <Grid item xs={6} style={{width: "70%", height: "100%",  display: "flex", justifyContent: "flex-end"}}>
