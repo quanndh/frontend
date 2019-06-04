@@ -51,13 +51,18 @@ class CartProvider extends Component{
         }  
     }
 
+    clearCart(){
+        this.setState({cartItems: []})
+    }
+
     render() {
         return ( 
             <CartContext.Provider value={{
                     cartItems: this.state.cartItems,
                     addToCart: this.addToCart,
                     changeValueQty: this.changeValueQty,
-                    totalPrice: this.totalPrice
+                    totalPrice: this.totalPrice,
+                    clearCart: this.clearCart
                 }}
             >
                 {this.props.children}

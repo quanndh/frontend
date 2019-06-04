@@ -46,7 +46,10 @@ class CartDetail extends Component {
             }, {
                 withCredentials: true
             })
-            .then(() =>  console.log(payment))
+            .then(() => {
+                window.location.href = "https://xcommerce-client.herokuapp.com";
+                this.context.clearCart();
+            })
             .catch(err => console.error(err))
         }
  
