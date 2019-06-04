@@ -141,7 +141,7 @@ class Main extends Component {
          <div style={{width: "100%"}}>
             
             <Navbar onClick={this.clickSearch}  onChange={this.searchChange} />
-                <div id="wrapper">
+                <div id="wrapper" style={{paddingBottom: "320px"}}>
                     <SaleProduct style={{width: "100%"}} product={sale} visible={showSale} handleCancel={this.handleCancel} handleOk={this.handleOk}/>
                 <div id="bodyWrapper" >
                     <AdsBanner style={{paddingTop: "-200px"}}/>

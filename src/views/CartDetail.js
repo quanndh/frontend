@@ -72,7 +72,7 @@ class CartDetail extends Component {
         return (
             <div id="wrapper">
                 <NavbarSmall />
-                <div id="bodyWrapper">
+                <div id="bodyWrapper" style={{paddingBottom: "320px"}}>
                     <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
                         <CartContext.Consumer>
                             {
