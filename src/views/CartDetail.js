@@ -73,7 +73,7 @@ class CartDetail extends Component {
             <div id="wrapper">
                 <NavbarSmall />
                 <div id="bodyWrapper">
-                    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginBottom: "120px"}}>
+                    <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
                         <CartContext.Consumer>
                             {
                                 ({cartItems}) => (
@@ -121,11 +121,10 @@ class CartDetail extends Component {
                         
                         </CartContext.Consumer>
 
-                    </div>
-                
-                    
+                    </div>   
                 </div>
-                <Footers />
+                
+                <Footers/>
             </div>
 
              /* // <Grid container spacing={16}>

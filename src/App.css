@@ -17,12 +17,12 @@ body{ min-height:100%; width: 100%; padding:0; margin:0;}
   min-height: 100%;
   position: relative;
   width: 100%;
+ 
 }
 
 #wrapper > #bodyWrapper {
   padding-top: 130px;
-  padding-bottom: 200px;
-  width: 100%;
+  width: 100%; padding-bottom: 120px;
 }
 
 
@@ -33,7 +33,7 @@ body{ min-height:100%; width: 100%; padding:0; margin:0;}
   bottom: 0;
   width: 100%;
   clear: both; */
-  position: absolute;
+  position: relative;
   left: 0;
   bottom: 0;
   height: auto;

@@ -11,6 +11,7 @@ import _ from "lodash";
 import { PulseLoader } from 'react-spinners';
 import { Empty } from 'antd';
 import {UserContext} from "../contexts/User";
+import SaleProduct from '../components/SaleProduct';
 
 
 class Main extends Component {
@@ -25,7 +26,8 @@ class Main extends Component {
             nPage: "",
             loading: false,
             user: {},
-            sale: {}
+            sale: {},
+            showSale: false
         }
         this.next = this.next.bind(this);
         this.previous = this.previous.bind(this);
@@ -68,17 +70,11 @@ class Main extends Component {
         this.setState({
             loading: true,
         })
-
         window.scrollTo(0,0);
 
         axios.get("https://xcommerce-server.herokuapp.com/api/products/?page=" + this.state.page )
         .then(data => this.setState({products: data.data.data, nPages: data.data.nPages, loading: false}))
         .catch(err => console.log(err))
-
-        axios.get("http://localhost:6969/api/products/sale")
-        .then(data => this.setState({sale: data.data.data}))
-        .catch(err => console.log(err))
-
     }
 
     componentDidUpdate(prevProps, prevState){  
@@ -117,18 +113,22 @@ class Main extends Component {
         }
 
         if(prevProps.user !== this.props.user){
-            axios.get("http://localhost:6969/api/products/sale")
-            .then(data => this.setState({sale: data.data.data}))
+            axios.get("https://xcommerce-server.herokuapp.com/api/products/sale", {
+                withCredentials: true
+            })
+            .then(data => this.setState({sale: data.data.data, showSale: true}))
             .catch(err => console.log(err))
         }
-
     }
-    
 
+    handleCancel = () => {
+        this.setState({ showSale: false });
+    };
+    
     render() {
-        const { products, search, category, price, page, nPages, loading, sale } = this.state;
-        console.log(sale)
+        const { products, search, category, price, page, nPages, loading, sale, showSale } = this.state;
         console.log(this.props.user)
+        console.log(sale)
       
         let displayProducts =  products.filter(product => product.title.toLowerCase().includes(search)).map(product => 
                 <Product product={product} key={product._id} handleWarning={this.handleWarning}/>
@@ -138,12 +138,12 @@ class Main extends Component {
         }
         return (
             
-         <div>
+         <div style={{width: "100%"}}>
             
             <Navbar onClick={this.clickSearch}  onChange={this.searchChange} />
                 <div id="wrapper">
-
-                <div id="bodyWrapper" style={{paddingBottom: "300px"}}>
+                    <SaleProduct style={{width: "100%"}} product={sale} visible={showSale} handleCancel={this.handleCancel} handleOk={this.handleOk}/>
+                <div id="bodyWrapper" >
                     <AdsBanner style={{paddingTop: "-200px"}}/>
                     <Grid container>
                         <Grid item xs={12} md={3} className="bg">
