@@ -11,7 +11,7 @@ class Login extends Component {
         return (
             <div id="wrapper">
                 <NavbarSmall />
-                <div id="bodyWrapper">
+                <div id="bodyWrapper" style={{paddingBottom: "20px"}}>
                     <LoginForm />
                 </div>
                 <Footers />
