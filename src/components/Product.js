@@ -30,7 +30,7 @@ class Product extends Component {
     const { product } = this.props;
     
     return (
-        <Grid item xs={12} md={6} lg={3} style={{height: "400px"}}>
+        <Grid item xs={12} md={6} lg={3} style={{height: "400px", padding: "12px"}}>
 
             <div class="container" style={createStyle(product.imageUrl)}>
                 <div class="overlay">
