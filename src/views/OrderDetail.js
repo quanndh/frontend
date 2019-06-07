@@ -7,6 +7,9 @@ import Statistics from "../components/Statistic";
 import { Card, Statistic } from "antd";
 import { Collapse } from 'antd';
 import Order from '../components/Order';
+import _ from "lodash";
+import { Empty } from 'antd';
+
 
 const Panel = Collapse.Panel;
 
@@ -71,7 +74,8 @@ class OrderDetail extends Component {
                         <Grid item xs={8}>
                             <h2 >Your orders</h2>
                             <Collapse defaultActiveKey={[this.state.key]} onChange={this.showOrder}>
-                                {displayOrdered}
+                                {!_.isEmpty(ordered) && displayOrdered}
+                                {_.isEmpty(ordered) && <Empty className='sweet-loading' description="No order yet!" />}
                             </Collapse>
                         </Grid>
                         
