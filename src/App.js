@@ -9,6 +9,7 @@ import Login from "./views/Login";
 import Signup from "./views/Signup";
 import {UserProvider, UserContext} from './contexts/User';
 import _ from "lodash";
+import OrderDetail from './views/OrderDetail';
 
 class App extends Component {
   constructor(){
@@ -39,6 +40,17 @@ class App extends Component {
                 ({user}) => {
                   return <Route path="/" exact render={props => {
                           return <Main user={user} {...props}/>
+                        }}></Route>
+                } 
+              }
+              
+              </UserContext.Consumer>
+
+              <UserContext.Consumer>
+              {
+                ({user}) => {
+                  return <Route path="/order" exact render={props => {
+                          return <OrderDetail user={user} {...props}/>
                         }}></Route>
                 } 
               }

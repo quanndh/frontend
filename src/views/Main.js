@@ -150,7 +150,7 @@ class Main extends Component {
                             <Filter onChange={this.changeCategory} category={category} price={price} changePrice={this.changePrice}/>
                         </Grid>
                         <Grid className="bg" id="Product" item xs={12} md={9} style={{marginBottom: "40px", width:"99%", minHeight: "700px"}}>
-                            <Grid container spacing={32} style={{minHeight: "700px"}}>
+                            <Grid container  style={{minHeight: "700px"}}>
                                 
                                 { loading !== true && displayProducts}
 

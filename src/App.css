@@ -283,3 +283,9 @@ a{
   line-height: 0 !important;
 }
 
+.statistic{
+  -webkit-box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.75);
+    box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.75);
+}
+

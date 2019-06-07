@@ -74,8 +74,19 @@ class NavbarSmall extends Component {
                         <UserContext.Consumer>
                             {
                                 ({user}) => {
+                                    if(!_.isElement(user)){
+                                        return <Typography className="nav-text" style={{paddingRight: "20px"}}> <Link className="nav-text"  to="/order">{user.username}</Link> </Typography> 
+                                    } else {
+                                        return ""
+                                    }
+                                }
+                            }
+                        </UserContext.Consumer>
+                        <UserContext.Consumer>
+                            {
+                                ({user}) => {
                                     if(!_.isEmpty(user) ){   
-                                            return <Typography className="nav-text">{user.username} <Link className="nav-text"  to="/" onClick={this.logOut}>Log out</Link> </Typography> 
+                                            return <Typography className="nav-text"> <Link className="nav-text"  to="/" onClick={this.logOut}>Log out</Link> </Typography> 
                                     } else {
                                         return <Link className="nav-text"  to="/login" >Log in</Link>
                                     }  

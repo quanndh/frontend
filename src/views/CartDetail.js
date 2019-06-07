@@ -130,22 +130,6 @@ class CartDetail extends Component {
                 <Footers/>
             </div>
 
-             /* // <Grid container spacing={16}>
-            //     <Grid item xs={12}>
-            //         <NavbarSmall />
-            //     </Grid>
-            //     <Grid item xs={12} style={{margin: "120px auto 0", maxWidth: "70vw"}}>
-                    
-            //     </Grid>
-            //     <Grid item xs={12} style={{display: "flex", justifyContent: "center", marginTop: "36px"}}>
-                   
-            //     </Grid>
-            //     <Grid item xs={12} style={{marginTop: "40px"}}>
-            //         <Footers />
-            //     </Grid>
-                
-            // </Grid>  */
-            
         );
     }
 }
