@@ -71,7 +71,7 @@ class OrderDetail extends Component {
                                 {displayData}
                             </Grid>
                         </Grid>
-                        <Grid item xs={8}>
+                        <Grid item xs={8} style={{maxWidth: "61%"}}>
                             <h2 >Your orders</h2>
                             <Collapse defaultActiveKey={[this.state.key]} onChange={this.showOrder}>
                                 {!_.isEmpty(ordered) && displayOrdered}

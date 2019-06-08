@@ -6,7 +6,7 @@ class Order extends Component {
     render() {
         const { data } = this.props;
         return (
-            <Paper style={{width: "75vw"}}>
+            <Paper style={{width: "100%"}}>
                 <Table >
                     <TableHead>
                         <TableRow>
